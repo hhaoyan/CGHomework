@@ -1,0 +1,8 @@
+# ignore all cmake files and intermediate files of glfw
+CMake*
+Makefile
+cmake*
+docs
+src
+examples
+tests
