@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Haoyan Huo. All rights reserved.
 //
 
-#ifndef __GLApplication_H__
-#define __GLApplication_H__
+#ifndef __libOOGL__GLApplication__
+#define __libOOGL__GLApplication__
 
 #include "gl.h"
 #include "GLObject.h"

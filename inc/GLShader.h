@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Haoyan Huo. All rights reserved.
 //
 
-#ifndef __OpenGLFirst__Shader__
-#define __OpenGLFirst__Shader__
+#ifndef __libOOGL__Shader__
+#define __libOOGL__Shader__
 
 #include "gl.h"
 #include "GLObject.h"

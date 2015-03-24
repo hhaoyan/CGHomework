@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Haoyan Huo. All rights reserved.
 //
 
-#ifndef __OpenGLFirst__GLFramebuffer__
-#define __OpenGLFirst__GLFramebuffer__
+#ifndef __libOOGL__GLFramebuffer__
+#define __libOOGL__GLFramebuffer__
 
 #include "gl.h"
 #include "GLObject.h"

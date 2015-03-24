@@ -11,8 +11,8 @@
 //  gl* functions should include this file, not glut/OpenGL
 //  itself.
 
-#ifndef HEADER_GLSETUP
-#define HEADER_GLSETUP
+#ifndef __libOOGL__setup__
+#define __libOOGL__setup__
 
 #define GLFW_INCLUDE_GLCOREARB
 #include "GLFW/glfw3.h"

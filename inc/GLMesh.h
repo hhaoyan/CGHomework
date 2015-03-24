@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Haoyan Huo. All rights reserved.
 //
 
-#ifndef __OpenGLFirst__GLMesh__
-#define __OpenGLFirst__GLMesh__
+#ifndef __libOOGL__GLMesh__
+#define __libOOGL__GLMesh__
 
 #include "gl.h"
 #include "GLObject.h"

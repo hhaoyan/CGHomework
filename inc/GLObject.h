@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Haoyan Huo. All rights reserved.
 //
 
-#ifndef __OpenGLFirst__GLObject__
-#define __OpenGLFirst__GLObject__
+#ifndef __libOOGL__GLObject__
+#define __libOOGL__GLObject__
 
 #include <stdio.h>
 #include "gl.h"
@@ -96,4 +96,4 @@ protected:
     virtual void DeleteObject() {}
 };
 
-#endif /* defined(__OpenGLFirst__GLObject__) */
+#endif /* defined(__libOOGL__GLObject__) */

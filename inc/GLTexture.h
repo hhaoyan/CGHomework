@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Haoyan Huo. All rights reserved.
 //
 
-#ifndef __OpenGLFirst__GLTexture__
-#define __OpenGLFirst__GLTexture__
+#ifndef __libOOGL__GLTexture__
+#define __libOOGL__GLTexture__
 
 #include "gl.h"
 #include "GLObject.h"

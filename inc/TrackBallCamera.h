@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Haoyan Huo. All rights reserved.
 //
 
-#ifndef __OpenGLFirst__TrackBallCamera__
-#define __OpenGLFirst__TrackBallCamera__
+#ifndef __libOOGL__TrackBallCamera__
+#define __libOOGL__TrackBallCamera__
 
 #include "gl.h"
 #include "GLApplication.h"
