@@ -57,10 +57,11 @@
 		293661D41AC1043C0084392E /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		293661D61AC104410084392E /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		293661D81AC1044E0084392E /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglfw3.a; path = "glfw/glfw-3.1.1/osx_build/libglfw3.a"; sourceTree = "<group>"; };
-		293661DB1AC111E10084392E /* depth.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = depth.txt; path = assets/depth.txt; sourceTree = SOURCE_ROOT; };
+		293661DB1AC111E10084392E /* depth.shader */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = depth.shader; path = assets/depth.shader; sourceTree = SOURCE_ROOT; };
 		293661DC1AC111E10084392E /* teapot.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = teapot.obj; path = assets/teapot.obj; sourceTree = SOURCE_ROOT; };
-		293661DD1AC111E10084392E /* teapot.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = teapot.txt; path = assets/teapot.txt; sourceTree = SOURCE_ROOT; };
+		293661DD1AC111E10084392E /* shadow.shader */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = shadow.shader; path = assets/shadow.shader; sourceTree = SOURCE_ROOT; };
 		293661DE1AC111E10084392E /* wall.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; name = wall.bmp; path = assets/wall.bmp; sourceTree = SOURCE_ROOT; };
+		293661E01AC143F70084392E /* DepthShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DepthShadow.h; path = demos/DepthShadow.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +107,8 @@
 				293661DA1AC111B20084392E /* assets */,
 				293661C71AC0FF0E0084392E /* inc */,
 				293661C61AC0FF040084392E /* src */,
+				293661DF1AC143AD0084392E /* demos */,
+				293661BC1AC0FEF70084392E /* main.cpp */,
 			);
 			path = libOOGL;
 			sourceTree = "<group>";
@@ -119,7 +122,6 @@
 				293661B91AC0FEF70084392E /* GLObject.cpp */,
 				293661BA1AC0FEF70084392E /* GLShader.cpp */,
 				293661BB1AC0FEF70084392E /* GLTexture.cpp */,
-				293661BC1AC0FEF70084392E /* main.cpp */,
 				293661BD1AC0FEF70084392E /* TrackBallCamera.cpp */,
 			);
 			name = src;
@@ -143,12 +145,20 @@
 		293661DA1AC111B20084392E /* assets */ = {
 			isa = PBXGroup;
 			children = (
-				293661DB1AC111E10084392E /* depth.txt */,
+				293661DB1AC111E10084392E /* depth.shader */,
 				293661DC1AC111E10084392E /* teapot.obj */,
-				293661DD1AC111E10084392E /* teapot.txt */,
+				293661DD1AC111E10084392E /* shadow.shader */,
 				293661DE1AC111E10084392E /* wall.bmp */,
 			);
 			name = assets;
+			sourceTree = "<group>";
+		};
+		293661DF1AC143AD0084392E /* demos */ = {
+			isa = PBXGroup;
+			children = (
+				293661E01AC143F70084392E /* DepthShadow.h */,
+			);
+			name = demos;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
