@@ -29,3 +29,6 @@ $osx_build(OSX):
 now libglfw3.a should be updated and useable for your machine.
 ### Notes on Windows
 If you plan to use Visual Studio, please add libglfw3.a under directory "libglfw/win_build" to your project.
+
+### Libraries used
+libOOGL uses [glm](https://github.com/g-truc/glm) and [glfw](http://www.glfw.org/), it's recommended to directly use header and source files from directory "glm" and "glfw" rather than download the latest, which may lead to some unexpected behaviors.
