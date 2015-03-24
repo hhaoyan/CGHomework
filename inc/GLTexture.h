@@ -32,6 +32,7 @@ public:
         kRGBA8888,
         kBGR888,
         kRGB888,
+        kGrayscale8, /**< Simulate grayscale bitmap using red channel */
         
         kINVALID,
     };

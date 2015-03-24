@@ -129,6 +129,7 @@ void GLTexture::SetTextureSize(int width, int height, TextureMode mode){
         4, //kRGBA8888
         3, //kBGR888
         3, //kRGB888
+        1, //kGrayscale8
     };
     
     fBufferSize = ModeToPixelSize[mode] * width * height;
@@ -245,12 +246,19 @@ void GLTexture::Attach(){
             
         case kBGRA8888:
             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, fTextureSize[0], fTextureSize[1], 0, GL_BGRA, GL_UNSIGNED_BYTE, fBuffer);
+            break;
             
         case kRGB888:
             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, fTextureSize[0], fTextureSize[1], 0, GL_RGB, GL_UNSIGNED_BYTE, fBuffer);
+            break;
             
         case kRGBA8888:
             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, fTextureSize[0], fTextureSize[1], 0, GL_RGBA, GL_UNSIGNED_BYTE, fBuffer);
+            break;
+            
+        case kGrayscale8:
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, fTextureSize[0], fTextureSize[1], 0, GL_RED, GL_UNSIGNED_BYTE, fBuffer);
+            break;
             
         default:
             Error(__FUNCTION__, "invalid texture mode");
