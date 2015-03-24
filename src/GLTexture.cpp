@@ -44,23 +44,31 @@ struct bmpInfo{
 };
 #pragma pack(pop)
 
-GLTexture* GLTexture::LoadFromBMPFile(const char *filename){
-    GLTexture * texture = new GLTexture();
+GLTexture* GLTexture::LoadFromBMPFile(const char *filename, GLTexture* old){
+    GLTexture * texture;
+    if(old){
+        if(old->IsAttached())
+            old->Detach();
+        texture = old;
+    }else
+        texture = new GLTexture();
+    
+    void* buf;
+    int bufferSize;
+    char* data;
     
     bmpHeader fileHeader;
     bmpInfo fileInfo;
     std::ifstream fin(filename, std::ios::binary);
     if(fin.fail()){
         texture->Warning(__FUNCTION__, "can't open %s for read", filename);
-        delete texture;
-        return NULL;
+        goto load_fail;
     }
     
     fin.read((char*)&fileHeader, sizeof(fileHeader));
     if (fileHeader.bfType != 0x4d42) {
         texture->Warning(__FUNCTION__, "%s is not a bitmap file", filename);
-        delete texture;
-        return NULL;
+        goto load_fail;
     }
     
     fin.read((char*)&fileInfo, sizeof(fileInfo));
@@ -68,30 +76,25 @@ GLTexture* GLTexture::LoadFromBMPFile(const char *filename){
        fileInfo.biCompression != 0 ||
        fileInfo.biBitCount != 24){
         texture->Warning(__FUNCTION__, "%s is not a readable bitmap file", filename);
-        delete texture;
-        return NULL;
+        goto load_fail;
     }
     
     texture->SetTextureSize(fileInfo.biWidth, glm::abs(fileInfo.biHeight), kBGR888);
     
-    void* buf;
-    int bufferSize;
     texture->GetTextureBuffer(&buf, &bufferSize);
     
     if(bufferSize != glm::abs(fileInfo.biHeight) * fileInfo.biWidth * 3){
         texture->Warning(__FUNCTION__, "buffer size mismatch %d:%d", bufferSize,
                          glm::abs(fileInfo.biHeight) * fileInfo.biWidth * 3);
-        delete texture;
-        return NULL;
+        goto load_fail;
     }
     
-    char* data = reinterpret_cast<char*>(buf);
+    data = reinterpret_cast<char*>(buf);
     fin.read(data, bufferSize);
     
     if(fin.gcount() != bufferSize){
         texture->Warning(__FUNCTION__, "IO failed for %s", filename);
-        delete texture;
-        return NULL;
+        goto load_fail;
     }
     
     fin.close();
@@ -110,6 +113,11 @@ GLTexture* GLTexture::LoadFromBMPFile(const char *filename){
     }
     
     return texture;
+    
+load_fail:
+    if(!old)
+        delete texture;
+    return NULL;
 }
 
 void GLTexture::SetTextureSize(int width, int height, TextureMode mode){
@@ -231,6 +239,36 @@ void GLTexture::GenerateMipmap(){
     OpenGLShouldHaveNoError(__FUNCTION__);
 }
 
+void GLTexture::glTexImage2DInternal(GLenum target, GLint level){
+    if(!fBuffer)
+        Error(__FUNCTION__, "texture buffer not ready");
+    
+    switch (fMode) {
+        case kBGR888:
+            glTexImage2D(target, level, GL_RGB, fTextureSize[0], fTextureSize[1], 0, GL_BGR, GL_UNSIGNED_BYTE, fBuffer);
+            break;
+            
+        case kBGRA8888:
+            glTexImage2D(target, level, GL_RGBA, fTextureSize[0], fTextureSize[1], 0, GL_BGRA, GL_UNSIGNED_BYTE, fBuffer);
+            break;
+            
+        case kRGB888:
+            glTexImage2D(target, level, GL_RGB, fTextureSize[0], fTextureSize[1], 0, GL_RGB, GL_UNSIGNED_BYTE, fBuffer);
+            break;
+            
+        case kRGBA8888:
+            glTexImage2D(target, level, GL_RGBA, fTextureSize[0], fTextureSize[1], 0, GL_RGBA, GL_UNSIGNED_BYTE, fBuffer);
+            break;
+            
+        case kGrayscale8:
+            glTexImage2D(target, level, GL_RED, fTextureSize[0], fTextureSize[1], 0, GL_RED, GL_UNSIGNED_BYTE, fBuffer);
+            break;
+            
+        default:
+            Error(__FUNCTION__, "invalid texture mode");
+    }
+}
+
 void GLTexture::Attach(){
     // allocate graphics memory
     if(IsAttached())
@@ -239,30 +277,7 @@ void GLTexture::Attach(){
     glGenTextures(1, &fTexture);
     glBindTexture(GL_TEXTURE_2D, fTexture);
     
-    switch (fMode) {
-        case kBGR888:
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, fTextureSize[0], fTextureSize[1], 0, GL_BGR, GL_UNSIGNED_BYTE, fBuffer);
-            break;
-            
-        case kBGRA8888:
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, fTextureSize[0], fTextureSize[1], 0, GL_BGRA, GL_UNSIGNED_BYTE, fBuffer);
-            break;
-            
-        case kRGB888:
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, fTextureSize[0], fTextureSize[1], 0, GL_RGB, GL_UNSIGNED_BYTE, fBuffer);
-            break;
-            
-        case kRGBA8888:
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, fTextureSize[0], fTextureSize[1], 0, GL_RGBA, GL_UNSIGNED_BYTE, fBuffer);
-            break;
-            
-        case kGrayscale8:
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, fTextureSize[0], fTextureSize[1], 0, GL_RED, GL_UNSIGNED_BYTE, fBuffer);
-            break;
-            
-        default:
-            Error(__FUNCTION__, "invalid texture mode");
-    }
+    glTexImage2DInternal(GL_TEXTURE_2D, 0);
     
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);

@@ -12,6 +12,8 @@
 #include "gl.h"
 #include "GLObject.h"
 
+class GLCubemapTexture;
+
 /*
  * GLTexture is a lazy object. When a GLTexture object is created,
  * there is no buffer in memory neither in graphics memory, to create
@@ -27,6 +29,8 @@
 
 class GLTexture : public GLObject{
 public:
+    friend class GLCubemapTexture;
+    
     enum TextureMode{
         kBGRA8888 = 0,
         kRGBA8888,
@@ -37,7 +41,7 @@ public:
         kINVALID,
     };
     
-    static GLTexture* LoadFromBMPFile(const char* filename);
+    static GLTexture* LoadFromBMPFile(const char* filename, GLTexture* old=NULL);
     
     GLTexture();
     GLTexture(int width, int height, TextureMode mode);
@@ -65,6 +69,8 @@ protected:
     virtual void DeleteObject();
     
 private:
+    void glTexImage2DInternal(GLenum target, GLint level);
+    
     bool     fIsAttached;
     GLuint   fTexture;
     void    *fBuffer; // the image buffer in memory, we own
