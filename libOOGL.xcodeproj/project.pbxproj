@@ -7,7 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		293661B01AC0FA380084392E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 293661AF1AC0FA380084392E /* main.cpp */; };
+		293661BE1AC0FEF70084392E /* GLApplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 293661B61AC0FEF70084392E /* GLApplication.cpp */; };
+		293661BF1AC0FEF70084392E /* GLFramebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 293661B71AC0FEF70084392E /* GLFramebuffer.cpp */; };
+		293661C01AC0FEF70084392E /* GLMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 293661B81AC0FEF70084392E /* GLMesh.cpp */; };
+		293661C11AC0FEF70084392E /* GLObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 293661B91AC0FEF70084392E /* GLObject.cpp */; };
+		293661C21AC0FEF70084392E /* GLShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 293661BA1AC0FEF70084392E /* GLShader.cpp */; };
+		293661C31AC0FEF70084392E /* GLTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 293661BB1AC0FEF70084392E /* GLTexture.cpp */; };
+		293661C41AC0FEF70084392E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 293661BC1AC0FEF70084392E /* main.cpp */; };
+		293661C51AC0FEF70084392E /* TrackBallCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 293661BD1AC0FEF70084392E /* TrackBallCamera.cpp */; };
+		293661D11AC104330084392E /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 293661D01AC104330084392E /* OpenGL.framework */; };
+		293661D31AC104370084392E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 293661D21AC104370084392E /* Cocoa.framework */; };
+		293661D51AC1043C0084392E /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 293661D41AC1043C0084392E /* CoreVideo.framework */; };
+		293661D71AC104410084392E /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 293661D61AC104410084392E /* IOKit.framework */; };
+		293661D91AC1044E0084392E /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 293661D81AC1044E0084392E /* libglfw3.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +36,27 @@
 
 /* Begin PBXFileReference section */
 		293661AC1AC0FA380084392E /* libOOGL */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = libOOGL; sourceTree = BUILT_PRODUCTS_DIR; };
-		293661AF1AC0FA380084392E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		293661B61AC0FEF70084392E /* GLApplication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GLApplication.cpp; path = src/GLApplication.cpp; sourceTree = SOURCE_ROOT; };
+		293661B71AC0FEF70084392E /* GLFramebuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GLFramebuffer.cpp; path = src/GLFramebuffer.cpp; sourceTree = SOURCE_ROOT; };
+		293661B81AC0FEF70084392E /* GLMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GLMesh.cpp; path = src/GLMesh.cpp; sourceTree = SOURCE_ROOT; };
+		293661B91AC0FEF70084392E /* GLObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GLObject.cpp; path = src/GLObject.cpp; sourceTree = SOURCE_ROOT; };
+		293661BA1AC0FEF70084392E /* GLShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GLShader.cpp; path = src/GLShader.cpp; sourceTree = SOURCE_ROOT; };
+		293661BB1AC0FEF70084392E /* GLTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GLTexture.cpp; path = src/GLTexture.cpp; sourceTree = SOURCE_ROOT; };
+		293661BC1AC0FEF70084392E /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = SOURCE_ROOT; };
+		293661BD1AC0FEF70084392E /* TrackBallCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TrackBallCamera.cpp; path = src/TrackBallCamera.cpp; sourceTree = SOURCE_ROOT; };
+		293661C81AC0FF1F0084392E /* gl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gl.h; path = inc/gl.h; sourceTree = SOURCE_ROOT; };
+		293661C91AC0FF1F0084392E /* GLApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLApplication.h; path = inc/GLApplication.h; sourceTree = SOURCE_ROOT; };
+		293661CA1AC0FF1F0084392E /* GLFramebuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLFramebuffer.h; path = inc/GLFramebuffer.h; sourceTree = SOURCE_ROOT; };
+		293661CB1AC0FF1F0084392E /* GLMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLMesh.h; path = inc/GLMesh.h; sourceTree = SOURCE_ROOT; };
+		293661CC1AC0FF1F0084392E /* GLObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLObject.h; path = inc/GLObject.h; sourceTree = SOURCE_ROOT; };
+		293661CD1AC0FF1F0084392E /* GLShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLShader.h; path = inc/GLShader.h; sourceTree = SOURCE_ROOT; };
+		293661CE1AC0FF1F0084392E /* GLTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLTexture.h; path = inc/GLTexture.h; sourceTree = SOURCE_ROOT; };
+		293661CF1AC0FF1F0084392E /* TrackBallCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrackBallCamera.h; path = inc/TrackBallCamera.h; sourceTree = SOURCE_ROOT; };
+		293661D01AC104330084392E /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		293661D21AC104370084392E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		293661D41AC1043C0084392E /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		293661D61AC104410084392E /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		293661D81AC1044E0084392E /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglfw3.a; path = "glfw/glfw-3.1.1/osx_build/libglfw3.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +64,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				293661D91AC1044E0084392E /* libglfw3.a in Frameworks */,
+				293661D71AC104410084392E /* IOKit.framework in Frameworks */,
+				293661D51AC1043C0084392E /* CoreVideo.framework in Frameworks */,
+				293661D31AC104370084392E /* Cocoa.framework in Frameworks */,
+				293661D11AC104330084392E /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +78,11 @@
 		293661A31AC0FA380084392E = {
 			isa = PBXGroup;
 			children = (
+				293661D81AC1044E0084392E /* libglfw3.a */,
+				293661D61AC104410084392E /* IOKit.framework */,
+				293661D41AC1043C0084392E /* CoreVideo.framework */,
+				293661D21AC104370084392E /* Cocoa.framework */,
+				293661D01AC104330084392E /* OpenGL.framework */,
 				293661AE1AC0FA380084392E /* libOOGL */,
 				293661AD1AC0FA380084392E /* Products */,
 			);
@@ -57,9 +99,40 @@
 		293661AE1AC0FA380084392E /* libOOGL */ = {
 			isa = PBXGroup;
 			children = (
-				293661AF1AC0FA380084392E /* main.cpp */,
+				293661C71AC0FF0E0084392E /* inc */,
+				293661C61AC0FF040084392E /* src */,
 			);
 			path = libOOGL;
+			sourceTree = "<group>";
+		};
+		293661C61AC0FF040084392E /* src */ = {
+			isa = PBXGroup;
+			children = (
+				293661B61AC0FEF70084392E /* GLApplication.cpp */,
+				293661B71AC0FEF70084392E /* GLFramebuffer.cpp */,
+				293661B81AC0FEF70084392E /* GLMesh.cpp */,
+				293661B91AC0FEF70084392E /* GLObject.cpp */,
+				293661BA1AC0FEF70084392E /* GLShader.cpp */,
+				293661BB1AC0FEF70084392E /* GLTexture.cpp */,
+				293661BC1AC0FEF70084392E /* main.cpp */,
+				293661BD1AC0FEF70084392E /* TrackBallCamera.cpp */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		293661C71AC0FF0E0084392E /* inc */ = {
+			isa = PBXGroup;
+			children = (
+				293661C81AC0FF1F0084392E /* gl.h */,
+				293661C91AC0FF1F0084392E /* GLApplication.h */,
+				293661CA1AC0FF1F0084392E /* GLFramebuffer.h */,
+				293661CB1AC0FF1F0084392E /* GLMesh.h */,
+				293661CC1AC0FF1F0084392E /* GLObject.h */,
+				293661CD1AC0FF1F0084392E /* GLShader.h */,
+				293661CE1AC0FF1F0084392E /* GLTexture.h */,
+				293661CF1AC0FF1F0084392E /* TrackBallCamera.h */,
+			);
+			name = inc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,7 +191,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				293661B01AC0FA380084392E /* main.cpp in Sources */,
+				293661C31AC0FEF70084392E /* GLTexture.cpp in Sources */,
+				293661BF1AC0FEF70084392E /* GLFramebuffer.cpp in Sources */,
+				293661C21AC0FEF70084392E /* GLShader.cpp in Sources */,
+				293661C11AC0FEF70084392E /* GLObject.cpp in Sources */,
+				293661BE1AC0FEF70084392E /* GLApplication.cpp in Sources */,
+				293661C41AC0FEF70084392E /* main.cpp in Sources */,
+				293661C51AC0FEF70084392E /* TrackBallCamera.cpp in Sources */,
+				293661C01AC0FEF70084392E /* GLMesh.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,14 +282,38 @@
 		293661B41AC0FA380084392E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SRCROOT)/inc\"/**",
+					"\"$(SRCROOT)/glm\"/**",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/glfw/glfw-3.1.1/osx_build",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
 		293661B51AC0FA380084392E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SRCROOT)/inc\"/**",
+					"\"$(SRCROOT)/glm\"/**",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/glfw/glfw-3.1.1/osx_build",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};
