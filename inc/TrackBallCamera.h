@@ -25,6 +25,7 @@ public:
     
     void ZoomIn() {fZoomFactor *= 0.5;}
     void ZoomOut() {fZoomFactor *= 1.5;}
+    void Zoom(double factor) {fZoomFactor *= factor;}
 protected:
     GLApplication*  fApplication;
     
