@@ -14,6 +14,10 @@
 int DecodeImageFile(const char* filename, void** data, long* width, long* height, long* bytesPerPixel);
 void FreeDecodedImage(void** data);
 
+#else
+
+#error "This header defines platform dependent routines for loading images, please implement for your platform first."
+
 #endif
 
 #endif
