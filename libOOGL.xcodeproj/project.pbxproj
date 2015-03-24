@@ -20,6 +20,7 @@
 		293661D51AC1043C0084392E /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 293661D41AC1043C0084392E /* CoreVideo.framework */; };
 		293661D71AC104410084392E /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 293661D61AC104410084392E /* IOKit.framework */; };
 		293661D91AC1044E0084392E /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 293661D81AC1044E0084392E /* libglfw3.a */; };
+		293661EC1AC1666D0084392E /* GLCubemapTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 293661EB1AC1666D0084392E /* GLCubemapTexture.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -62,6 +63,15 @@
 		293661DD1AC111E10084392E /* shadow.shader */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = shadow.shader; path = assets/shadow.shader; sourceTree = SOURCE_ROOT; };
 		293661DE1AC111E10084392E /* wall.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; name = wall.bmp; path = assets/wall.bmp; sourceTree = SOURCE_ROOT; };
 		293661E01AC143F70084392E /* DepthShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DepthShadow.h; path = demos/DepthShadow.h; sourceTree = SOURCE_ROOT; };
+		293661EA1AC15B340084392E /* GLCubemapTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLCubemapTexture.h; path = inc/GLCubemapTexture.h; sourceTree = SOURCE_ROOT; };
+		293661EB1AC1666D0084392E /* GLCubemapTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GLCubemapTexture.cpp; path = src/GLCubemapTexture.cpp; sourceTree = SOURCE_ROOT; };
+		293661F61AC173060084392E /* negx.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = negx.bmp; sourceTree = "<group>"; };
+		293661F71AC173060084392E /* negy.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = negy.bmp; sourceTree = "<group>"; };
+		293661F81AC173060084392E /* negz.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = negz.bmp; sourceTree = "<group>"; };
+		293661F91AC173060084392E /* posx.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = posx.bmp; sourceTree = "<group>"; };
+		293661FA1AC173060084392E /* posy.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = posy.bmp; sourceTree = "<group>"; };
+		293661FB1AC173060084392E /* posz.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = posz.bmp; sourceTree = "<group>"; };
+		293661FC1AC173060084392E /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +126,7 @@
 		293661C61AC0FF040084392E /* src */ = {
 			isa = PBXGroup;
 			children = (
+				293661EB1AC1666D0084392E /* GLCubemapTexture.cpp */,
 				293661B61AC0FEF70084392E /* GLApplication.cpp */,
 				293661B71AC0FEF70084392E /* GLFramebuffer.cpp */,
 				293661B81AC0FEF70084392E /* GLMesh.cpp */,
@@ -137,6 +148,7 @@
 				293661CC1AC0FF1F0084392E /* GLObject.h */,
 				293661CD1AC0FF1F0084392E /* GLShader.h */,
 				293661CE1AC0FF1F0084392E /* GLTexture.h */,
+				293661EA1AC15B340084392E /* GLCubemapTexture.h */,
 				293661CF1AC0FF1F0084392E /* TrackBallCamera.h */,
 			);
 			name = inc;
@@ -145,6 +157,7 @@
 		293661DA1AC111B20084392E /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				293661F51AC173060084392E /* Yokohama3 */,
 				293661DB1AC111E10084392E /* depth.shader */,
 				293661DC1AC111E10084392E /* teapot.obj */,
 				293661DD1AC111E10084392E /* shadow.shader */,
@@ -160,6 +173,21 @@
 			);
 			name = demos;
 			sourceTree = "<group>";
+		};
+		293661F51AC173060084392E /* Yokohama3 */ = {
+			isa = PBXGroup;
+			children = (
+				293661F61AC173060084392E /* negx.bmp */,
+				293661F71AC173060084392E /* negy.bmp */,
+				293661F81AC173060084392E /* negz.bmp */,
+				293661F91AC173060084392E /* posx.bmp */,
+				293661FA1AC173060084392E /* posy.bmp */,
+				293661FB1AC173060084392E /* posz.bmp */,
+				293661FC1AC173060084392E /* readme.txt */,
+			);
+			name = Yokohama3;
+			path = assets/Yokohama3;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -217,6 +245,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				293661EC1AC1666D0084392E /* GLCubemapTexture.cpp in Sources */,
 				293661C31AC0FEF70084392E /* GLTexture.cpp in Sources */,
 				293661BF1AC0FEF70084392E /* GLFramebuffer.cpp in Sources */,
 				293661C21AC0FEF70084392E /* GLShader.cpp in Sources */,
@@ -319,6 +348,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/glfw/glfw-3.1.1/osx_build",
+					"$(PROJECT_DIR)/freetype/freetype-2.5.5/osx_build",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -339,6 +369,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/glfw/glfw-3.1.1/osx_build",
+					"$(PROJECT_DIR)/freetype/freetype-2.5.5/osx_build",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "";

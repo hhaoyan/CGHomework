@@ -15,6 +15,7 @@
 #include "GLMesh.h"
 #include "GLTexture.h"
 #include "GLFramebuffer.h"
+#include "GLCubemapTexture.h"
 #include <unistd.h>
 
 class AssetManager{
@@ -46,9 +47,27 @@ class DepthShadowDemo : public GLApplication{
     GLShader *fDepth;
     GLTexture *fTexture;
     GLFramebuffer *depthFramebuffer;
+    GLCubemapTexture* cubemap;
     float bias = 0.00003;
+    
 public:
+    virtual void MouseScroll(double x, double y){
+        bool up = y > 0;
+        if(up)
+            fCamera->Zoom(0.8);
+        else
+            fCamera->Zoom(1.1);
+    }
     virtual void CreateApplication(){
+        cubemap = GLCubemapTexture::LoadFromFiles(AssetManager::GetAsset("Yokohama3/"),
+                                                  "posx.bmp",
+                                                  "negx.bmp",
+                                                  "posy.bmp",
+                                                  "negy.bmp",
+                                                  "posz.bmp",
+                                                  "negz.bmp");
+        cubemap->Attach();
+        
         glEnable(GL_DEPTH_TEST);
         
         fTeapot = GLMesh::LoadFromObjFile(AssetManager::GetAsset("teapot.obj"), GLMesh::kPosTexNor);
@@ -133,13 +152,15 @@ public:
         
         fTeapot->UseMeshAndDrawTriangles();
         fPlane->UseMeshAndDrawTriangles();
-        usleep(25000);
+        //usleep(25000);
         
         fSimpleShader->UseProgram();
         fSimpleShader->Uniform4f("staticColor", 1.0f, 0.0f, 0.0f, 1.0f);
         mtTrans *= glm::translate(glm::vec3(1.0f, 1.0f, 1.0f));
         fSimpleShader->UniformMatrix4fv("transformMatrix", 1, GL_FALSE, &mtTrans[0][0]);
         fSphere->UseMeshAndDrawTriangles();
+        
+        cubemap->ActivateAndBindTexture(GL_TEXTURE4);
     }
     
     virtual void ShutdownApplication(){
