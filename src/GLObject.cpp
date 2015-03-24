@@ -1,5 +1,6 @@
 //
 //  GLObject.cpp
+//  libOOGL
 //
 //  Created by Haoyan Huo on 3/19/15.
 //  Copyright (c) 2015 Haoyan Huo. All rights reserved.

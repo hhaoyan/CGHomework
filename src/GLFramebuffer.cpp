@@ -1,6 +1,6 @@
 //
 //  GLFramebuffer.cpp
-//  OpenGLFirst
+//  libOOGL
 //
 //  Created by Haoyan Huo on 3/21/15.
 //  Copyright (c) 2015 Haoyan Huo. All rights reserved.
