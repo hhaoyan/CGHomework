@@ -15,11 +15,10 @@ GLApplication* GLApplication::fInstance = 0;
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 #endif // __llvm__
 
-GLApplication::GLApplication(int argc, char** argv) :
-fWindowHandle(0), fWindowSize{0,0}, fMousePosition{0,0}{
+GLApplication::GLApplication() :
+fWindow(0), fWindowSize{0,0}, fMousePosition{0,0}, fWindowFramebufferSize{0,0}{
     // set up OpenGL environment and do necessary stuffs.
     
-    glutInit(&argc, argv);
     memset(fKeyState, 0, sizeof(fKeyState));
     memset(fMouseState, 0, sizeof(fMouseState));
     
@@ -27,17 +26,16 @@ fWindowHandle(0), fWindowSize{0,0}, fMousePosition{0,0}{
         Error(__FUNCTION__, "More than one GL app is instantiated");
     
     fInstance = this;
+    glfwSetErrorCallback(GLApplication::ErrorCallback);
+    if (!glfwInit())
+        Error(__FUNCTION__, "Can't initialize GLFW");
 }
 
 GLApplication::~GLApplication(){
-    
+    glfwTerminate();
 }
 
 void GLApplication::CreateWindow(const char* title, int width, int height){
-    // initialize OpenGL context and create the window
-    
-    glutInitDisplayMode(GLUT_3_2_CORE_PROFILE | GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
-    
     if(width <= 0)
         Error(__FUNCTION__, "Width should not be %d", width);
     if(height <= 0)
@@ -45,19 +43,27 @@ void GLApplication::CreateWindow(const char* title, int width, int height){
     
     fWindowSize[0] = width;
     fWindowSize[1] = height;
-    glutInitWindowSize(width, height);
     
-    fWindowHandle = glutCreateWindow(title);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    fWindow = glfwCreateWindow(width, height, title, NULL, NULL);
     
-    if(fWindowHandle < 1)
+    glfwGetFramebufferSize(fWindow, fWindowFramebufferSize, fWindowFramebufferSize+1);
+    
+    if(!fWindow)
         Error(__FUNCTION__, "Could not create window");
     
-    glutReshapeFunc(GLApplication::ReshapeCallback);
-    glutDisplayFunc(GLApplication::DisplayCallback);
-    glutKeyboardFunc(GLApplication::KeyboardCallback);
-    glutKeyboardUpFunc(GLApplication::KeyboardUpCallback);
-    glutMotionFunc(GLApplication::MotionCallback);
-    glutMouseFunc(GLApplication::MouseCallback);
+    glfwMakeContextCurrent(fWindow);
+    glfwSwapInterval(1);
+    
+    glfwSetMouseButtonCallback(fWindow, GLApplication::MouseCallback);
+    glfwSetWindowSizeCallback(fWindow, GLApplication::ResizeCallback);
+    glfwSetKeyCallback(fWindow, GLApplication::KeyboardCallback);
+    glfwSetScrollCallback(fWindow, GLApplication::ScrollCallback);
+    glfwSetCursorPosCallback(fWindow, GLApplication::MotionCallback);
+    glfwSetFramebufferSizeCallback(fWindow, GLApplication::FramebufferSizeCallback);
     
     OpenGLShouldHaveNoError(__FUNCTION__);
     
@@ -65,91 +71,107 @@ void GLApplication::CreateWindow(const char* title, int width, int height){
 }
 
 void GLApplication::RunMainLoop(){
-    if(fWindowHandle < 1)
+    if(!fWindow)
         Error(__FUNCTION__, "Window not created");
     
     CreateApplication();
-    // It seems that OpenGL have depth test switched off after the
-    // context is created
-    glEnable(GL_DEPTH_TEST);
+    /**
+     * OpenGL does not have depth test switched on by default, so if you want to 
+     * enable depth testing, call glEnable(GL_DEPTH_TEST) at CreateApplication().
+     *
+     */
+    //glEnable(GL_DEPTH_TEST);
     OpenGLShouldHaveNoError("InitializeApplication");
     
-    glutMainLoop();
+    while ((!glfwWindowShouldClose(fWindow))) {
+        RenderFrame();
+        
+        glfwSwapBuffers(fWindow);
+        glfwPollEvents();
+        
+        OpenGLShouldHaveNoError(__FUNCTION__);
+    }
     
     ShutdownApplication();
+    glfwDestroyWindow(fWindow);
     OpenGLShouldHaveNoError("ShutdownApplication");
 }
 
-void GLApplication::Display(){
-    RenderFrame();
-    glutSwapBuffers();
-    glutPostRedisplay();
-    OpenGLShouldHaveNoError(__FUNCTION__);
-}
-
-void GLApplication::Reshape(int width, int height){
+void GLApplication::Resize(GLFWwindow *window, int width, int height){
     fWindowSize[0] = width;
     fWindowSize[1] = height;
     
     WindowSizeChanged(width, height);
 }
 
-void GLApplication::Keyboard(unsigned char chr, int x, int y){
-    fKeyState[chr] = 1;
-    KeyDown(chr);
+void GLApplication::Keyboard(GLFWwindow *window, int key, int scancode, int action, int mods){
+    fKeyState[key] = GLFW_PRESS;
+    switch (action) {
+        case GLFW_PRESS:
+        case GLFW_REPEAT:
+            KeyDown(key);
+            break;
+            
+        case GLFW_RELEASE:
+            KeyUp(key);
+            break;
+            
+        default:
+            break;
+    }
 }
 
-void GLApplication::KeyboardUp(unsigned char chr, int x, int y){
-    fKeyState[chr] = 0;
-    KeyUp(chr);
-}
-
-void GLApplication::Motion(int x, int y){
+void GLApplication::Motion(GLFWwindow *window, double x, double y){
     fMousePosition[0] = x;
     fMousePosition[1] = y;
     MouseMove(x, y);
 }
 
-void GLApplication::Mouse(int button, int state, int x, int y){
-    // update mouse pointer location, but do not notify app
-    fMousePosition[0] = x;
-    fMousePosition[1] = y;
-    
-    // TODO: implement wheel scroll events
+void GLApplication::Mouse(GLFWwindow *window, int button, int action, int mods){
     int which;
     switch (button) {
-        case GLUT_LEFT_BUTTON:
+        case GLFW_MOUSE_BUTTON_LEFT:
             which = 0;
             break;
             
-        case GLUT_MIDDLE_BUTTON:
+        case GLFW_MOUSE_BUTTON_MIDDLE:
             which = 1;
             break;
             
-        case GLUT_RIGHT_BUTTON:
+        case GLFW_MOUSE_BUTTON_RIGHT:
             which = 2;
             break;
             
         default:
-            Warning(__FUNCTION__, "Unknown mouse button %d from GLUT", button);
+            Warning(__FUNCTION__, "Unknown mouse button %d from GLFW", button);
             return;
     }
     
-    switch (state) {
-        case GLUT_UP:
-            fMouseState[which] = 0;
-            MouseKeyUp(which);
-            break;
-            
-        case GLUT_DOWN:
+    switch (action) {
+        case GLFW_PRESS:
             fMouseState[which] = 1;
             MouseKeyDown(which);
             break;
             
+        case GLFW_RELEASE:
+            fMouseState[which] = 0;
+            MouseKeyUp(which);
+            break;
+            
         default:
-            Warning(__FUNCTION__, "Unknown moust button state %d from GLUT", state);
+            Warning(__FUNCTION__, "Unknown moust button state %d from GLFW", action);
             return;
     }
+}
+
+void GLApplication::Scroll(GLFWwindow *window, double xoffset, double yoffset){
+    MouseScroll(xoffset, yoffset);
+}
+
+void GLApplication::FramebufferSize(GLFWwindow *window, int width, int height){
+    fWindowFramebufferSize[0] = width;
+    fWindowFramebufferSize[1] = height;
+    WindowFramebufferSizeChanged(width, height);
 }
 
 #ifdef __llvm__

@@ -14,17 +14,10 @@
 #ifndef HEADER_GLSETUP
 #define HEADER_GLSETUP
 
-#ifdef __APPLE__
-
-#include <Opengl/gl3.h>
-#define __gl_h_
-#include <GLUT/GLUT.h>
+#define GLFW_INCLUDE_GLCOREARB
+#include "GLFW/glfw3.h"
 #include "glm/glm.hpp"
 #include "glm/ext.hpp"
-
-#else
-#error "OpenGL not implemented on your platform"
-
-#endif //APPLE
+#include <stdio.h>
 
 #endif

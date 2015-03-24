@@ -6,10 +6,9 @@
 //  Copyright (c) 2015 Haoyan Huo. All rights reserved.
 //
 
-#ifndef __OpenGLFirst__GLApplication__
-#define __OpenGLFirst__GLApplication__
+#ifndef __GLApplication_H__
+#define __GLApplication_H__
 
-#include <stdio.h>
 #include "gl.h"
 #include "GLObject.h"
 
@@ -26,7 +25,7 @@
 class GLApplication : public GLObject{
 public:
     /** @brief default constructor */
-    GLApplication(int argc = NULL, char** argv = NULL);
+    GLApplication();
     /** @brief default destructor */
     virtual ~GLApplication();
     
@@ -49,6 +48,14 @@ public:
      * @see GetWindowWidth()
      */
     int GetWindowHeight() {return fWindowSize[1];}
+    /** @brief Gets the framebuffer width.
+     * @see GetWindowFramebufferHeight().
+     */
+    int GetWindowFramebufferWidth() {return fWindowFramebufferSize[0];}
+    /** @brief Gets the framebuffer height.
+     * @see GetWindowFramebufferWidth().
+     */
+    int GetWindowFramebufferHeight() {return fWindowFramebufferSize[1];}
     /** @brief Gets the pointer X coordinate.
      * @see GetPointerY()
      */
@@ -91,8 +98,22 @@ protected:
     /** @brief Event callback when the window size has changed.
      * @param[in] width the new window width.
      * @param[in] height the new window height.
+     * @see WindowFramebufferSizeChanged()
      */
     virtual void WindowSizeChanged(int width, int height) {return;}
+    
+    /**
+     * @brief Event callback when the framebuffer size of window has changed.
+     *
+     * This is different from WindowSizeChanged, while window size is measured in
+     * screen coordinates, framebuffer size is measured in pixels, this is especially
+     * important on retina displays, the window size may not be equal to framebuffer
+     * size.
+     * @param[in] width the new framebuffer width.
+     * @param[in] height the new framebuffer height.
+     * @see WindowSizeChanged()
+     */
+    virtual void WindowFramebufferSizeChanged(int width, int height) {return;}
     
     /** @brief Event callback when a mouse key is pressed.
      * @param[in] which the key id, 0 stands for left button, and 1 the
@@ -125,44 +146,46 @@ protected:
      */
     virtual void MouseMove(int x, int y) {return;}
     
-    /** @brief Event callback when mouse scrolls up. 
+    /** @brief Event callback when scrolls.
      *
-     * Note: OSX does not have scroll events.
-     * @see MouseScrollDown()
      */
-    virtual void MouseScrollUp() {return;}
-    
-    /** @brief Event callback when mouse scrolls down.
-     * @see MouseScrollUp()
-     */
-    virtual void MouseScrollDown() {return;}
+    virtual void MouseScroll(double xoffset, double yoffset) {return;}
     
 private:
     /** @brief The singleton pointer of GLApplication. */
     static GLApplication* fInstance;
     
-    /** @brief Gets the unique GLApplication pointer of this process. */
+    /** @brief Gets the unique GLApplication of this process. */
     static GLApplication* instance(){return fInstance;}
     
-    void Reshape(int width, int height);
-    void Display();
-    void Keyboard(unsigned char chr, int x, int y);
-    void KeyboardUp(unsigned char chr, int x, int y);
-    void Mouse(int button, int state, int x, int y);
-    void Motion(int x, int y);
+    void Resize(GLFWwindow* window, int width, int height);
+    void Keyboard(GLFWwindow* window, int key, int scancode, int action, int mods);
+    void Mouse(GLFWwindow* window, int button, int action, int mods);
+    void Scroll(GLFWwindow* window, double xoffset, double yoffset);
+    void Motion(GLFWwindow* window, double x, double y);
+    void FramebufferSize(GLFWwindow* window, int width, int height);
     
-    // static callbacks for GLUT
-    static void ReshapeCallback(int width, int height) {instance()->Reshape(width, height);}
-    static void DisplayCallback() {instance()->Display();}
-    static void KeyboardCallback(unsigned char chr, int x, int y) {instance()->Keyboard(chr, x, y);}
-    static void KeyboardUpCallback(unsigned char chr, int x, int y) {instance()->KeyboardUp(chr, x, y);}
-    static void MouseCallback(int btn, int state, int x, int y) {instance()->Mouse(btn, state, x, y);}
-    static void MotionCallback(int x, int y) {instance()->Motion(x, y);}
+    // static callbacks
+    static void ErrorCallback(int err, const char* desc)
+        {instance()->Info("GLFW", "GLFW Error(%d): %s", err, desc);}
+    static void ResizeCallback(GLFWwindow* window, int width, int height)
+        {instance()->Resize(window, width, height);}
+    static void KeyboardCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+        {instance()->Keyboard(window, key, scancode, action, mods);}
+    static void MouseCallback(GLFWwindow* window, int button, int action, int mods)
+        {instance()->Mouse(window, button, action, mods);}
+    static void ScrollCallback(GLFWwindow* window, double xoffset, double yoffset)
+        {instance()->Scroll(window, xoffset, yoffset);}
+    static void MotionCallback(GLFWwindow* window, double x, double y)
+        {instance()->Motion(window, x, y);}
+    static void FramebufferSizeCallback(GLFWwindow* window, int width, int height)
+        {instance()->FramebufferSize(window, width, height);}
     
-    int fWindowHandle;
+    GLFWwindow* fWindow;
     int fWindowSize[2];
-    unsigned char fKeyState[256], fMouseState[3];
+    int fWindowFramebufferSize[2];
+    unsigned char fKeyState[GLFW_KEY_LAST], fMouseState[3];
     int fMousePosition[2];
 };
 
-#endif /* defined(__OpenGLFirst__GLApplication__) */
+#endif /* defined(__GLApplication_H__) */
