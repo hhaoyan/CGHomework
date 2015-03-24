@@ -1,0 +1,56 @@
+//
+//  GLFramebuffer.h
+//  OpenGLFirst
+//
+//  Created by Haoyan Huo on 3/21/15.
+//  Copyright (c) 2015 Haoyan Huo. All rights reserved.
+//
+
+#ifndef __OpenGLFirst__GLFramebuffer__
+#define __OpenGLFirst__GLFramebuffer__
+
+#include "gl.h"
+#include "GLObject.h"
+
+class GLFramebuffer : public GLObject{
+public:
+    enum FramebufferType{
+        kColorOnly = 1,
+        kDepthOnly = 2,
+        kColorDepth = 1|2,
+    };
+    GLFramebuffer(int width, int height, GLint magFilter=GL_LINEAR, GLint minFilter=GL_LINEAR, FramebufferType type=kColorDepth);
+    ~GLFramebuffer();
+    
+    void Resize(int width, int height);
+    
+    bool IsAttached() {return fIsAttached;}
+    void Attach();
+    void Detach();
+    
+    void BindFramebuffer(bool clear=true);
+    void UnbindFramebuffer();
+    
+    GLuint GetFramebuffer();
+    GLuint GetColorTexture();
+    GLuint GetDepthTexture();
+    
+    void SetColorTextureParameteri(GLint what, GLint how);
+    void SetDepthTextureParameteri(GLint what, GLint how);
+    
+    void ActivateAndBindColorTexture(GLuint slot);
+    void ActivateAndBindDepthTexture(GLuint slot);
+    
+protected:
+    virtual void DeleteObject();
+    
+private:
+    FramebufferType fFramebufferType;
+    int   fBufferSize[2];
+    GLint       fMagfilter, fMinfilter;
+    GLuint      fFramebufferObject;
+    GLuint      fColorTextureObject, fDepthTextureObject;
+    bool        fIsAttached;
+};
+
+#endif /* defined(__OpenGLFirst__GLFramebuffer__) */
