@@ -8,6 +8,7 @@
 
 #include "GLTexture.h"
 #include <fstream>
+#include "ObjectiveCInterface.h"
 
 GLTexture::GLTexture() :
     fIsAttached(false), fBuffer(0), fTextureSize{0,0}, fTexture(0){
@@ -20,30 +21,6 @@ GLTexture::GLTexture(int width, int height, TextureMode mode):
     SetTextureSize(width, height, mode);
 }
 
-#pragma pack(push,1)
-typedef unsigned short WORD;
-typedef unsigned int DWORD;
-typedef int LONG;
-struct bmpHeader{
-    WORD	bfType;
-    DWORD	bFilesize;
-    WORD	bfR1;
-    WORD	bfR2;
-    DWORD	bfOffsetToData;
-};
-
-struct bmpInfo{
-    DWORD	biSize;
-    LONG	biWidth, biHeight;
-    WORD	biPlanes;
-    WORD	biBitCount;
-    DWORD	biCompression;
-    DWORD	biSizeImage;
-    LONG	ppm[2];
-    DWORD	biclrs[2];
-};
-#pragma pack(pop)
-
 GLTexture* GLTexture::LoadFromBMPFile(const char *filename, GLTexture* old){
     GLTexture * texture;
     if(old){
@@ -53,65 +30,35 @@ GLTexture* GLTexture::LoadFromBMPFile(const char *filename, GLTexture* old){
     }else
         texture = new GLTexture();
     
-    void* buf;
-    int bufferSize;
-    char* data;
+    void* data;
+    long width, height, bytesPerPixel;
     
-    bmpHeader fileHeader;
-    bmpInfo fileInfo;
-    std::ifstream fin(filename, std::ios::binary);
-    if(fin.fail()){
-        texture->Warning(__FUNCTION__, "can't open %s for read", filename);
+    if(!DecodeImageFile(filename, &data, &width, &height, &bytesPerPixel)){
+        texture->Warning(__FUNCTION__, "can't open %s as texture", filename);
         goto load_fail;
     }
     
-    fin.read((char*)&fileHeader, sizeof(fileHeader));
-    if (fileHeader.bfType != 0x4d42) {
-        texture->Warning(__FUNCTION__, "%s is not a bitmap file", filename);
+    if(bytesPerPixel != 32){
+        texture->Warning(__FUNCTION__, "incomplete internal API");
         goto load_fail;
     }
     
-    fin.read((char*)&fileInfo, sizeof(fileInfo));
-    if(fileInfo.biSize != sizeof(fileInfo) ||
-       fileInfo.biCompression != 0 ||
-       fileInfo.biBitCount != 24){
-        texture->Warning(__FUNCTION__, "%s is not a readable bitmap file", filename);
-        goto load_fail;
-    }
+    {
+        char* tmp = new char[width * 4];
+        char* parsed = reinterpret_cast<char*>(data);
     
-    texture->SetTextureSize(fileInfo.biWidth, glm::abs(fileInfo.biHeight), kBGR888);
-    
-    texture->GetTextureBuffer(&buf, &bufferSize);
-    
-    if(bufferSize != glm::abs(fileInfo.biHeight) * fileInfo.biWidth * 3){
-        texture->Warning(__FUNCTION__, "buffer size mismatch %d:%d", bufferSize,
-                         glm::abs(fileInfo.biHeight) * fileInfo.biWidth * 3);
-        goto load_fail;
-    }
-    
-    data = reinterpret_cast<char*>(buf);
-    fin.read(data, bufferSize);
-    
-    if(fin.gcount() != bufferSize){
-        texture->Warning(__FUNCTION__, "IO failed for %s", filename);
-        goto load_fail;
-    }
-    
-    fin.close();
-    
-    if(fileInfo.biHeight < 0){
-        char* tmp = new char[fileInfo.biWidth * 3];
-        int width = fileInfo.biWidth;
-        int height = fileInfo.biHeight * -1;
-        
-        for(int i = 0;i<(fileInfo.biHeight * -1) / 2;i++){
-            memcpy(tmp, &data[i * width * 3], width * 3);
-            memcpy(&data[i * width * 3], &data[(height - 1 - i) * width * 3], width * 3);
-            memcpy(&data[(height - i - 1) * width * 3], tmp, width * 3);
+        for(int i = 0;i<height / 2;i++){
+            memcpy(tmp, &parsed[i * width * 4], width * 4);
+            memcpy(&parsed[i * width * 4], &parsed[(height - 1 - i) * width * 4], width * 4);
+            memcpy(&parsed[(height - i - 1) * width * 4], tmp, width * 4);
         }
+        
         delete [] tmp;
     }
     
+    texture->SetTextureSize(static_cast<int>(width), static_cast<int>(height), kRGBA8888);
+    texture->SetTextureBuffer(data);
+    FreeDecodedImage(&data);
     return texture;
     
 load_fail:
