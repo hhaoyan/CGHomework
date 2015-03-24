@@ -21,6 +21,7 @@
 		293661D71AC104410084392E /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 293661D61AC104410084392E /* IOKit.framework */; };
 		293661D91AC1044E0084392E /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 293661D81AC1044E0084392E /* libglfw3.a */; };
 		293661EC1AC1666D0084392E /* GLCubemapTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 293661EB1AC1666D0084392E /* GLCubemapTexture.cpp */; };
+		293661FF1AC191640084392E /* MacOSX.mm in Sources */ = {isa = PBXBuildFile; fileRef = 293661FE1AC191640084392E /* MacOSX.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -65,13 +66,15 @@
 		293661E01AC143F70084392E /* DepthShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DepthShadow.h; path = demos/DepthShadow.h; sourceTree = SOURCE_ROOT; };
 		293661EA1AC15B340084392E /* GLCubemapTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLCubemapTexture.h; path = inc/GLCubemapTexture.h; sourceTree = SOURCE_ROOT; };
 		293661EB1AC1666D0084392E /* GLCubemapTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GLCubemapTexture.cpp; path = src/GLCubemapTexture.cpp; sourceTree = SOURCE_ROOT; };
-		293661F61AC173060084392E /* negx.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = negx.bmp; sourceTree = "<group>"; };
-		293661F71AC173060084392E /* negy.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = negy.bmp; sourceTree = "<group>"; };
-		293661F81AC173060084392E /* negz.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = negz.bmp; sourceTree = "<group>"; };
-		293661F91AC173060084392E /* posx.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = posx.bmp; sourceTree = "<group>"; };
-		293661FA1AC173060084392E /* posy.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = posy.bmp; sourceTree = "<group>"; };
-		293661FB1AC173060084392E /* posz.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = posz.bmp; sourceTree = "<group>"; };
 		293661FC1AC173060084392E /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
+		293661FD1AC190EF0084392E /* ObjectiveCInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObjectiveCInterface.h; path = inc/ObjectiveCInterface.h; sourceTree = SOURCE_ROOT; };
+		293661FE1AC191640084392E /* MacOSX.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MacOSX.mm; path = src/MacOSX.mm; sourceTree = SOURCE_ROOT; };
+		29F265881AC1AA0900DD859A /* negx.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = negx.jpg; sourceTree = "<group>"; };
+		29F265891AC1AA0900DD859A /* negy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = negy.jpg; sourceTree = "<group>"; };
+		29F2658A1AC1AA0900DD859A /* negz.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = negz.jpg; sourceTree = "<group>"; };
+		29F2658B1AC1AA0900DD859A /* posx.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = posx.jpg; sourceTree = "<group>"; };
+		29F2658C1AC1AA0900DD859A /* posy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = posy.jpg; sourceTree = "<group>"; };
+		29F2658D1AC1AA0900DD859A /* posz.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = posz.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +129,7 @@
 		293661C61AC0FF040084392E /* src */ = {
 			isa = PBXGroup;
 			children = (
+				293661FE1AC191640084392E /* MacOSX.mm */,
 				293661EB1AC1666D0084392E /* GLCubemapTexture.cpp */,
 				293661B61AC0FEF70084392E /* GLApplication.cpp */,
 				293661B71AC0FEF70084392E /* GLFramebuffer.cpp */,
@@ -141,6 +145,7 @@
 		293661C71AC0FF0E0084392E /* inc */ = {
 			isa = PBXGroup;
 			children = (
+				293661FD1AC190EF0084392E /* ObjectiveCInterface.h */,
 				293661C81AC0FF1F0084392E /* gl.h */,
 				293661C91AC0FF1F0084392E /* GLApplication.h */,
 				293661CA1AC0FF1F0084392E /* GLFramebuffer.h */,
@@ -177,12 +182,12 @@
 		293661F51AC173060084392E /* Yokohama3 */ = {
 			isa = PBXGroup;
 			children = (
-				293661F61AC173060084392E /* negx.bmp */,
-				293661F71AC173060084392E /* negy.bmp */,
-				293661F81AC173060084392E /* negz.bmp */,
-				293661F91AC173060084392E /* posx.bmp */,
-				293661FA1AC173060084392E /* posy.bmp */,
-				293661FB1AC173060084392E /* posz.bmp */,
+				29F265881AC1AA0900DD859A /* negx.jpg */,
+				29F265891AC1AA0900DD859A /* negy.jpg */,
+				29F2658A1AC1AA0900DD859A /* negz.jpg */,
+				29F2658B1AC1AA0900DD859A /* posx.jpg */,
+				29F2658C1AC1AA0900DD859A /* posy.jpg */,
+				29F2658D1AC1AA0900DD859A /* posz.jpg */,
 				293661FC1AC173060084392E /* readme.txt */,
 			);
 			name = Yokohama3;
@@ -253,6 +258,7 @@
 				293661BE1AC0FEF70084392E /* GLApplication.cpp in Sources */,
 				293661C41AC0FEF70084392E /* main.cpp in Sources */,
 				293661C51AC0FEF70084392E /* TrackBallCamera.cpp in Sources */,
+				293661FF1AC191640084392E /* MacOSX.mm in Sources */,
 				293661C01AC0FEF70084392E /* GLMesh.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -395,6 +401,7 @@
 				293661B51AC0FA380084392E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

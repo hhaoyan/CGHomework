@@ -60,12 +60,12 @@ public:
     }
     virtual void CreateApplication(){
         cubemap = GLCubemapTexture::LoadFromFiles(AssetManager::GetAsset("Yokohama3/"),
-                                                  "posx.bmp",
-                                                  "negx.bmp",
-                                                  "posy.bmp",
-                                                  "negy.bmp",
-                                                  "posz.bmp",
-                                                  "negz.bmp");
+                                                  "posx.jpg",
+                                                  "negx.jpg",
+                                                  "posy.jpg",
+                                                  "negy.jpg",
+                                                  "posz.jpg",
+                                                  "negz.jpg");
         cubemap->Attach();
         
         glEnable(GL_DEPTH_TEST);
