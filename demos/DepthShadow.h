@@ -47,10 +47,9 @@ class DepthShadowDemo : public GLApplication{
     GLShader *fDepth;
     GLTexture *fTexture;
     GLFramebuffer *depthFramebuffer;
-    GLCubemapTexture* cubemap;
     float bias = 0.00003;
-    
 public:
+    
     virtual void MouseScroll(double x, double y){
         bool up = y > 0;
         if(up)
@@ -59,15 +58,6 @@ public:
             fCamera->Zoom(1.1);
     }
     virtual void CreateApplication(){
-        cubemap = GLCubemapTexture::LoadFromFiles(AssetManager::GetAsset("Yokohama3/"),
-                                                  "posx.jpg",
-                                                  "negx.jpg",
-                                                  "posy.jpg",
-                                                  "negy.jpg",
-                                                  "posz.jpg",
-                                                  "negz.jpg");
-        cubemap->Attach();
-        
         glEnable(GL_DEPTH_TEST);
         
         fTeapot = GLMesh::LoadFromObjFile(AssetManager::GetAsset("teapot.obj"), GLMesh::kPosTexNor);
@@ -159,12 +149,10 @@ public:
         mtTrans *= glm::translate(glm::vec3(1.0f, 1.0f, 1.0f));
         fSimpleShader->UniformMatrix4fv("transformMatrix", 1, GL_FALSE, &mtTrans[0][0]);
         fSphere->UseMeshAndDrawTriangles();
-        
-        cubemap->ActivateAndBindTexture(GL_TEXTURE4);
     }
     
     virtual void ShutdownApplication(){
-        
+        // no need to detach and delete objects...
     }
 };
 
