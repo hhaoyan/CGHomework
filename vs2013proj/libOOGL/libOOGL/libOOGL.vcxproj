@@ -93,6 +93,7 @@
     <ClCompile Include="..\..\..\src\Win32.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\demos\DepthShadow.h" />
     <ClInclude Include="..\..\..\inc\gl.h" />
     <ClInclude Include="..\..\..\inc\GLApplication.h" />
     <ClInclude Include="..\..\..\inc\GLCubemapTexture.h" />
