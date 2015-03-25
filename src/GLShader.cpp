@@ -13,8 +13,8 @@
 #include <sstream>
 
 const char SimpleColoredShaderSrc[] = R"THESHADER(
-#!Shader!
-#!VertexShader!
+//!Shader!
+//!VertexShader!
 #version 400
 layout(location=0) in vec3 in_Position;
 layout(location=1) in vec2 in_Texcoord;
@@ -27,9 +27,9 @@ void main(void)
     gl_Position = transformMatrix * vec4(in_Position, 1.0f);
 }
 
-#!VertexShaderEnd!
+//!VertexShaderEnd!
 
-#!FragmentShader!
+//!FragmentShader!
 #version 400
 uniform vec4 staticColor;
 
@@ -38,7 +38,7 @@ out vec4 out_Color;
 void main(void){
     out_Color = staticColor;
 }
-#!FragmentShaderEnd!
+//!FragmentShaderEnd!
 )THESHADER";
 
 const char ShaderSign[] = "!Shader!";
