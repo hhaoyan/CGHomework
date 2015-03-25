@@ -16,9 +16,15 @@ GLApplication* GLApplication::fInstance = 0;
 #endif // __llvm__
 
 GLApplication::GLApplication() :
-fWindow(0), fWindowSize{0,0}, fMousePosition{0,0}, fWindowFramebufferSize{0,0}{
+fWindow(0){
     // set up OpenGL environment and do necessary stuffs.
     
+	// TODO: we can't do this in initializer because a compiler bug of VS2013, 
+	// maybe this will be fixed in next generation of VS
+	fWindowSize[0] = 0; fWindowSize[1] = 0;
+	fMousePosition[0] = fMousePosition[1] = 0;
+	fWindowFramebufferSize[0] = fWindowFramebufferSize[1] = 0;
+
     memset(fKeyState, 0, sizeof(fKeyState));
     memset(fMouseState, 0, sizeof(fMouseState));
     
