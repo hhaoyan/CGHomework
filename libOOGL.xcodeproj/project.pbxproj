@@ -22,6 +22,7 @@
 		293661D91AC1044E0084392E /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 293661D81AC1044E0084392E /* libglfw3.a */; };
 		293661EC1AC1666D0084392E /* GLCubemapTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 293661EB1AC1666D0084392E /* GLCubemapTexture.cpp */; };
 		293661FF1AC191640084392E /* MacOSX.mm in Sources */ = {isa = PBXBuildFile; fileRef = 293661FE1AC191640084392E /* MacOSX.mm */; };
+		296F42991AC264E10098E71A /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 296F42981AC264E10098E71A /* libfreetype.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -69,6 +70,7 @@
 		293661FC1AC173060084392E /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 		293661FD1AC190EF0084392E /* ObjectiveCInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObjectiveCInterface.h; path = inc/ObjectiveCInterface.h; sourceTree = SOURCE_ROOT; };
 		293661FE1AC191640084392E /* MacOSX.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MacOSX.mm; path = src/MacOSX.mm; sourceTree = SOURCE_ROOT; };
+		296F42981AC264E10098E71A /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = "freetype/freetype-2.5.5/osx_build/libfreetype.a"; sourceTree = "<group>"; };
 		29F265881AC1AA0900DD859A /* negx.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = negx.jpg; sourceTree = "<group>"; };
 		29F265891AC1AA0900DD859A /* negy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = negy.jpg; sourceTree = "<group>"; };
 		29F2658A1AC1AA0900DD859A /* negz.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = negz.jpg; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				296F42991AC264E10098E71A /* libfreetype.a in Frameworks */,
 				293661D91AC1044E0084392E /* libglfw3.a in Frameworks */,
 				293661D71AC104410084392E /* IOKit.framework in Frameworks */,
 				293661D51AC1043C0084392E /* CoreVideo.framework in Frameworks */,
@@ -96,6 +99,7 @@
 		293661A31AC0FA380084392E = {
 			isa = PBXGroup;
 			children = (
+				296F42981AC264E10098E71A /* libfreetype.a */,
 				293661D81AC1044E0084392E /* libglfw3.a */,
 				293661D61AC104410084392E /* IOKit.framework */,
 				293661D41AC1043C0084392E /* CoreVideo.framework */,
@@ -350,6 +354,7 @@
 					"\"$(SRCROOT)/inc\"/**",
 					"\"$(SRCROOT)/glm\"/**",
 					"\"$(SRCROOT)/glfw/glfw-3.1.1/include\"/**",
+					"\"$(SRCROOT)/freetype/freetype-2.5.5/include\"/**",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -371,6 +376,7 @@
 					"\"$(SRCROOT)/inc\"/**",
 					"\"$(SRCROOT)/glm\"/**",
 					"\"$(SRCROOT)/glfw/glfw-3.1.1/include\"/**",
+					"\"$(SRCROOT)/freetype/freetype-2.5.5/include\"/**",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
