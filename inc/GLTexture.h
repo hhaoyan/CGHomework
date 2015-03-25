@@ -41,7 +41,7 @@ public:
         kINVALID,
     };
     
-    static GLTexture* LoadFromBMPFile(const char* filename, GLTexture* old=NULL);
+    static GLTexture* LoadFromFile(const char* filename, GLTexture* old=NULL);
     
     GLTexture();
     GLTexture(int width, int height, TextureMode mode);
