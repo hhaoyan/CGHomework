@@ -54,20 +54,6 @@ GLTexture* GLTexture::LoadFromFile(const char *filename, GLTexture* old){
         goto load_fail;
     }
     
-	// FIXME: osx should flip the image in objective c
-    if(0){
-        char* tmp = new char[width * 4];
-        char* parsed = reinterpret_cast<char*>(data);
-    
-        for(int i = 0;i<height / 2;i++){
-            memcpy(tmp, &parsed[i * width * 4], width * 4);
-            memcpy(&parsed[i * width * 4], &parsed[(height - 1 - i) * width * 4], width * 4);
-            memcpy(&parsed[(height - i - 1) * width * 4], tmp, width * 4);
-        }
-        
-        delete [] tmp;
-    }
-    
     texture->SetTextureBuffer(data);
     FreeDecodedImage(&data);
     return texture;

@@ -28,6 +28,24 @@ int DecodeImageFile(const char *filename, void **data, long* w, long* h, long* b
         long bufferSize = [rep bytesPerPlane];
         void* buffer = malloc(bufferSize);
         memcpy(buffer, [rep bitmapData], [rep bytesPerPlane]);
+        
+        // flip the image
+        // FIXME: osx should flip the image in objective c
+        {
+            char* tmp = new char[[rep pixelsHigh] * 4];
+            char* parsed = reinterpret_cast<char*>(buffer);
+            long height = [rep pixelsHigh];
+            long width = [rep pixelsWide];
+            
+            for(int i = 0;i<height / 2;i++){
+                memcpy(tmp, &parsed[i * width * 4], width * 4);
+                memcpy(&parsed[i * width * 4], &parsed[(height - 1 - i) * width * 4], width * 4);
+                memcpy(&parsed[(height - i - 1) * width * 4], tmp, width * 4);
+            }
+            
+            delete [] tmp;
+        }
+        
         *data = buffer;
         *w = [rep pixelsWide];
         *h = [rep pixelsHigh];
