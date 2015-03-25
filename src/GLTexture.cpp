@@ -48,7 +48,7 @@ GLTexture* GLTexture::LoadFromFile(const char *filename, GLTexture* old){
 	if (bytesPerPixel == 32){
 		texture->SetTextureSize(static_cast<int>(width), static_cast<int>(height), kRGBA8888);
 	}else if (bytesPerPixel == 24){
-		texture->SetTextureSize(static_cast<int>(width), static_cast<int>(height), kRGB888);
+		texture->SetTextureSize(static_cast<int>(width), static_cast<int>(height), kBGR888);
 	}else{
         texture->Warning(__FUNCTION__, "incomplete internal API");
         goto load_fail;
