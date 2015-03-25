@@ -8,16 +8,23 @@
 
 #include "GLTexture.h"
 #include <fstream>
+#include <algorithm>
 #include "ObjectiveCInterface.h"
 
 GLTexture::GLTexture() :
-    fIsAttached(false), fBuffer(0), fTextureSize{0,0}, fTexture(0){
+    fIsAttached(false), fBuffer(0), fTexture(0){
     
+	// TODO: we can't do this in initializer because a compiler bug of VS2013, 
+	// maybe this will be fixed in next generation of VS
+	fTextureSize[0] = fTextureSize[1] = 0;
 }
 
 GLTexture::GLTexture(int width, int height, TextureMode mode):
-    fIsAttached(false), fBuffer(0), fTextureSize{0,0}, fTexture(0){
+    fIsAttached(false), fBuffer(0), fTexture(0){
     
+	// TODO: we can't do this in initializer because a compiler bug of VS2013, 
+	// maybe this will be fixed in next generation of VS
+	fTextureSize[0] = fTextureSize[1] = 0;
     SetTextureSize(width, height, mode);
 }
 
@@ -38,12 +45,17 @@ GLTexture* GLTexture::LoadFromFile(const char *filename, GLTexture* old){
         goto load_fail;
     }
     
-    if(bytesPerPixel != 32){
+	if (bytesPerPixel == 32){
+		texture->SetTextureSize(static_cast<int>(width), static_cast<int>(height), kRGBA8888);
+	}else if (bytesPerPixel == 24){
+		texture->SetTextureSize(static_cast<int>(width), static_cast<int>(height), kRGB888);
+	}else{
         texture->Warning(__FUNCTION__, "incomplete internal API");
         goto load_fail;
     }
     
-    {
+	// FIXME: osx should flip the image in objective c
+    if(0){
         char* tmp = new char[width * 4];
         char* parsed = reinterpret_cast<char*>(data);
     
@@ -56,7 +68,6 @@ GLTexture* GLTexture::LoadFromFile(const char *filename, GLTexture* old){
         delete [] tmp;
     }
     
-    texture->SetTextureSize(static_cast<int>(width), static_cast<int>(height), kRGBA8888);
     texture->SetTextureBuffer(data);
     FreeDecodedImage(&data);
     return texture;

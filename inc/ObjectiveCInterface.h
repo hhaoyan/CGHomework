@@ -11,7 +11,12 @@
 
 #ifdef __APPLE__
 
-int DecodeImageFile(const char* filename, void** data, long* width, long* height, long* bytesPerPixel);
+int DecodeImageFile(const char* filename, void** data, long* width, long* height, long* bitsPerPixel);
+void FreeDecodedImage(void** data);
+
+#elif defined WIN32
+
+int DecodeImageFile(const char* filename, void** data, long* width, long* height, long* bitsPerPixel);
 void FreeDecodedImage(void** data);
 
 #else
