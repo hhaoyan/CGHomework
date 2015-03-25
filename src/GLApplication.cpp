@@ -71,6 +71,13 @@ void GLApplication::CreateWindow(const char* title, int width, int height){
     glfwSetCursorPosCallback(fWindow, GLApplication::MotionCallback);
     glfwSetFramebufferSizeCallback(fWindow, GLApplication::FramebufferSizeCallback);
     
+#ifdef WIN32
+	glewExperimental = GL_TRUE;
+	if (GLEW_OK != glewInit()){
+		Error(__FUNCTION__, "glew init failed");
+	}
+#endif
+
     OpenGLShouldHaveNoError(__FUNCTION__);
     
     Info(__FUNCTION__, "OpenGL version: %s", glGetString(GL_VERSION));
