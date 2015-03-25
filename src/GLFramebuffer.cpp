@@ -9,9 +9,13 @@
 #include "GLFramebuffer.h"
 
 GLFramebuffer::GLFramebuffer(int width, int height, GLint magFilter, GLint minFilter, FramebufferType type):
-    fBufferSize{width, height}, fMagfilter(magFilter), fMinfilter(minFilter),
+    fMagfilter(magFilter), fMinfilter(minFilter),
     fIsAttached(false), fFramebufferType(type){
     
+	// TODO: we can't do this in initializer because a compiler bug of VS2013, 
+	// maybe this will be fixed in next generation of VS
+	fBufferSize[0] = width;
+	fBufferSize[1] = height;
 }
 
 GLFramebuffer::~GLFramebuffer(){
