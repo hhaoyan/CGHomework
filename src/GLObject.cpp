@@ -12,7 +12,12 @@
 void GLObject::OpenGLShouldHaveNoError(const char* who){
     // TODO: we should check whether GLApplication exists
     GLenum error = glGetError();
+	static bool firstCall = true;
     if(error){
+		if (error == 1280 && firstCall){
+			firstCall = false;
+			return;
+		}
         Error(who, "Fatal OpenGL Error %d:%s", error, glGetString(error));
     }
 }
