@@ -85,7 +85,7 @@ public:
         fDepth->Compile(AssetManager::GetAsset("depth.shader"), "mtTrans");
         fSimpleShader = GLShader::SimpleShaderFactory::SimpleColoredShader();
         
-        fTexture = GLTexture::LoadFromBMPFile(AssetManager::GetAsset("wall.bmp"));
+        fTexture = GLTexture::LoadFromFile(AssetManager::GetAsset("wall.bmp"));
         fTexture->Attach();
         fTexture->GenerateMipmap();
         

@@ -21,7 +21,7 @@ GLTexture::GLTexture(int width, int height, TextureMode mode):
     SetTextureSize(width, height, mode);
 }
 
-GLTexture* GLTexture::LoadFromBMPFile(const char *filename, GLTexture* old){
+GLTexture* GLTexture::LoadFromFile(const char *filename, GLTexture* old){
     GLTexture * texture;
     if(old){
         if(old->IsAttached())

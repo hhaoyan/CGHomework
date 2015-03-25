@@ -32,27 +32,27 @@ GLCubemapTexture* GLCubemapTexture::LoadFromFiles(const char* prefix,
     int size;
     
     fn = pf + px;
-    if(!GLTexture::LoadFromBMPFile(fn.c_str(), map->fTextures+0))
+    if(!GLTexture::LoadFromFile(fn.c_str(), map->fTextures+0))
         goto fail;
     
     fn = pf + nx;
-    if(!GLTexture::LoadFromBMPFile(fn.c_str(), map->fTextures+1))
+    if(!GLTexture::LoadFromFile(fn.c_str(), map->fTextures+1))
         goto fail;
     
     fn = pf + py;
-    if(!GLTexture::LoadFromBMPFile(fn.c_str(), map->fTextures+2))
+    if(!GLTexture::LoadFromFile(fn.c_str(), map->fTextures+2))
         goto fail;
     
     fn = pf + ny;
-    if(!GLTexture::LoadFromBMPFile(fn.c_str(), map->fTextures+3))
+    if(!GLTexture::LoadFromFile(fn.c_str(), map->fTextures+3))
         goto fail;
     
     fn = pf + pz;
-    if(!GLTexture::LoadFromBMPFile(fn.c_str(), map->fTextures+4))
+    if(!GLTexture::LoadFromFile(fn.c_str(), map->fTextures+4))
         goto fail;
     
     fn = pf + nz;
-    if(!GLTexture::LoadFromBMPFile(fn.c_str(), map->fTextures+5))
+    if(!GLTexture::LoadFromFile(fn.c_str(), map->fTextures+5))
         goto fail;
     
     size = map->fTextures[0].TextureWidth();
