@@ -5,11 +5,11 @@
 //  Copyright (c) 2015 Haoyan Huo. All rights reserved.
 //
 
-#include "../demos/DepthShadow.h"
+#include "../demos/FontDemo.h"
 
 
 int main(int argc, char** argv){
-    GLApplication * app = new DepthShadowDemo();
+    GLApplication * app = new FontDemo();
     app->CreateWindow("Demo", 800, 600);
     app->RunMainLoop();
     delete app;
