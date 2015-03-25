@@ -14,8 +14,20 @@
 #ifndef __libOOGL__setup__
 #define __libOOGL__setup__
 
-#define GLFW_INCLUDE_GLCOREARB
+#ifdef __APPLE__
+#define GLFW_INCLUDE_GLCOREARB // there is no arb support on MSVC
+#endif
+
+#ifdef WIN32
+#include "GL/glew.h"
+#endif
+
 #include "GLFW/glfw3.h"
+
+#ifdef WIN32
+#define GLM_FORCE_PURE // due to a compiler complain of VS2013
+#endif
+
 #include "glm/glm.hpp"
 #include "glm/ext.hpp"
 #include <stdio.h>
