@@ -46,6 +46,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\main.cpp" />
+    <ClCompile Include="..\..\..\src\GLTextRenderManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\inc\GLObject.h">
@@ -80,6 +83,15 @@
     </ClInclude>
     <ClInclude Include="..\..\..\demos\DepthShadow.h">
       <Filter>Demos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\demos\FontDemo.h">
+      <Filter>Demos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\demos\VSCompute.h">
+      <Filter>Demos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\inc\GLTextRenderManager.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

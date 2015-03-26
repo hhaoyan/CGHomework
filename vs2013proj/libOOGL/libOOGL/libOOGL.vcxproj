@@ -41,8 +41,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)/../../glfw/glfw-3.1.1/win_build/include/;$(SolutionDir)/../../inc/;$(SolutionDir)/../../glm/;$(SolutionDir)/../../glew/glew-1.12.0/include/;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)/../../glew/glew-1.12.0/lib/Release/Win32/;$(SolutionDir)/../../glfw/glfw-3.1.1/win_build/lib-vc2013/;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)/../../glfw/glfw-3.1.1/win_build/include/;$(SolutionDir)/../../inc/;$(SolutionDir)/../../glm/;$(SolutionDir)/../../glew/glew-1.12.0/include/;$(SolutionDir)/../../freetype/freetype-2.5.5/win32_build/freetype-2.3.5-1-bin/include/freetype2/;$(SolutionDir)/../../freetype/freetype-2.5.5/win32_build/freetype-2.3.5-1-bin/include/;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)/../../glew/glew-1.12.0/lib/Release/Win32/;$(SolutionDir)/../../glfw/glfw-3.1.1/win_build/lib-vc2013/;$(SolutionDir)/../../freetype/freetype-2.5.5/win32_build/freetype-2.3.5-1-bin/lib/;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -59,7 +59,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glew32.lib;glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;glfw3.lib;opengl32.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -87,6 +87,7 @@
     <ClCompile Include="..\..\..\src\GLMesh.cpp" />
     <ClCompile Include="..\..\..\src\GLObject.cpp" />
     <ClCompile Include="..\..\..\src\GLShader.cpp" />
+    <ClCompile Include="..\..\..\src\GLTextRenderManager.cpp" />
     <ClCompile Include="..\..\..\src\GLTexture.cpp" />
     <ClCompile Include="..\..\..\src\main.cpp" />
     <ClCompile Include="..\..\..\src\TrackBallCamera.cpp" />
@@ -94,6 +95,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\demos\DepthShadow.h" />
+    <ClInclude Include="..\..\..\demos\FontDemo.h" />
+    <ClInclude Include="..\..\..\demos\VSCompute.h" />
     <ClInclude Include="..\..\..\inc\gl.h" />
     <ClInclude Include="..\..\..\inc\GLApplication.h" />
     <ClInclude Include="..\..\..\inc\GLCubemapTexture.h" />
@@ -101,6 +104,7 @@
     <ClInclude Include="..\..\..\inc\GLMesh.h" />
     <ClInclude Include="..\..\..\inc\GLObject.h" />
     <ClInclude Include="..\..\..\inc\GLShader.h" />
+    <ClInclude Include="..\..\..\inc\GLTextRenderManager.h" />
     <ClInclude Include="..\..\..\inc\GLTexture.h" />
     <ClInclude Include="..\..\..\inc\ObjectiveCInterface.h" />
     <ClInclude Include="..\..\..\inc\TrackBallCamera.h" />
