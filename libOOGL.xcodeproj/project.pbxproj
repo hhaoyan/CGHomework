@@ -73,8 +73,11 @@
 		293661FE1AC191640084392E /* MacOSX.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MacOSX.mm; path = src/MacOSX.mm; sourceTree = SOURCE_ROOT; };
 		294389D81AC2BE1200A2BDF8 /* GLTextRenderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLTextRenderManager.h; path = inc/GLTextRenderManager.h; sourceTree = SOURCE_ROOT; };
 		294389D91AC2BE1C00A2BDF8 /* GLTextRenderManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GLTextRenderManager.cpp; path = src/GLTextRenderManager.cpp; sourceTree = SOURCE_ROOT; };
+		2952648F1AC2E46400DB79A9 /* compute.shader */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = compute.shader; path = assets/compute.shader; sourceTree = SOURCE_ROOT; };
+		295264901AC2FA5300DB79A9 /* VSCompute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSCompute.h; path = demos/VSCompute.h; sourceTree = SOURCE_ROOT; };
 		296F42981AC264E10098E71A /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = "freetype/freetype-2.5.5/osx_build/libfreetype.a"; sourceTree = "<group>"; };
 		296F429A1AC2A1E50098E71A /* FontDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FontDemo.h; path = demos/FontDemo.h; sourceTree = SOURCE_ROOT; };
+		298CA74F1AC3B90600482ABB /* texture_visualize.shader */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = texture_visualize.shader; path = assets/texture_visualize.shader; sourceTree = SOURCE_ROOT; };
 		29F265881AC1AA0900DD859A /* negx.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = negx.jpg; sourceTree = "<group>"; };
 		29F265891AC1AA0900DD859A /* negy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = negy.jpg; sourceTree = "<group>"; };
 		29F2658A1AC1AA0900DD859A /* negz.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = negz.jpg; sourceTree = "<group>"; };
@@ -175,6 +178,8 @@
 				293661F51AC173060084392E /* Yokohama3 */,
 				293661DB1AC111E10084392E /* depth.shader */,
 				293661DC1AC111E10084392E /* teapot.obj */,
+				2952648F1AC2E46400DB79A9 /* compute.shader */,
+				298CA74F1AC3B90600482ABB /* texture_visualize.shader */,
 				293661DD1AC111E10084392E /* shadow.shader */,
 				293661DE1AC111E10084392E /* wall.bmp */,
 			);
@@ -184,6 +189,7 @@
 		293661DF1AC143AD0084392E /* demos */ = {
 			isa = PBXGroup;
 			children = (
+				295264901AC2FA5300DB79A9 /* VSCompute.h */,
 				293661E01AC143F70084392E /* DepthShadow.h */,
 				296F429A1AC2A1E50098E71A /* FontDemo.h */,
 			);
