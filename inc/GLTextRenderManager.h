@@ -12,6 +12,16 @@
 #include "GLObject.h"
 #include "gl.h"
 
+/**
+ * @brief Manages text rendering.
+ *
+ * A pure static class. Before any text could be rendered, you must setup
+ * the typeface(AKA font name) by calling SetFontname().
+ *
+ * Coordinates of texts are computed using screen relative units. In horizontal
+ * direction, x starts with -1 at left and ends with +1 at right, in vertical
+ * direction, y starts with -1 at bottom and ends with +1 at top.
+ */
 class GLTextRenderManager : GLObject{
 public:
     /**
@@ -26,10 +36,10 @@ public:
     /**
      * @brief Adds a line to text renderer.
      *
-     * This adds a line to the screen. if @param name is NULL, then
-     * this line will only be draw once, otherwise the line is persistent.
-     * @param[in] Name the name of text, could be NULL.
-     * @param[in] Content the content of text.
+     * This adds a line to the screen. if name is NULL, then
+     * this line will only be draw once, otherwise the text is persistent.
+     * @param[in] name the name of text, could be NULL.
+     * @param[in] content the content of text.
      * @param[in] size The text size.
      * @param[in] x X of start point, in screen relative coordinate.
      * @param[in] y Y of start point, in screen relative coordinate.
@@ -45,10 +55,10 @@ public:
     /**
      * @brief Adds a line to text renderer.
      *
-     * This adds a line to the screen. if @param name is NULL, then
-     * this line will only be draw once, otherwise the line is persistent.
-     * @param[in] Name the name of text, could be NULL.
-     * @param[in] Content the content of text.
+     * This adds a line to the screen. if name is NULL, then
+     * this line will only be draw once, otherwise the text is persistent.
+     * @param[in] name the name of text, could be NULL.
+     * @param[in] content the content of text.
      * @param[in] size The text size.
      * @param[in] x X of start point, in screen relative coordinate.
      * @param[in] y Y of start point, in screen relative coordinate.

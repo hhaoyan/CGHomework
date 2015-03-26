@@ -78,9 +78,9 @@ public:
     /**
      * @brief Copy texture pixels.
      *
-     * This method fills the image buffer. Note that @param buf is not 
+     * This method fills the image buffer. Note that buf is not 
      * freed by GLTexture, the pixel data is copyed internally, caller 
-     * must be responsible for the lifecycle of @param buf.
+     * must be responsible for the lifecycle of buf.
      * @param[in] buf The source buffer to copy from.
      * @param[in] bufSize Default value is set to the size computed
      * from image size.

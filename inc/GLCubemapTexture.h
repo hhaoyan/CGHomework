@@ -44,13 +44,13 @@ public:
      */
     void SetTextureSize(int size, GLTexture::TextureMode mode);
     /**
-     * @brief Transforms the data from @param buf to the internal 
+     * @brief Transforms the data from buf to the internal
      * memory buffer.
      * @see GetTextureBuffer()
      */
     void SetTextureBuffer(CubeFaceId face, void* buf, int bufSize=-1);
     /**
-     * @brief Gets the data from internal memory buffer to @param buf.
+     * @brief Gets the data from internal memory buffer to buf.
      * @see SetTextureBuffer()
      */
     void GetTextureBuffer(CubeFaceId face, void** buf, int* bufSize);
