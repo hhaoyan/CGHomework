@@ -42,16 +42,16 @@ public:
         float sx = 2.0 / GetWindowFramebufferWidth();
         float sy = 2.0 / GetWindowFramebufferHeight();
         
-        GLTextRenderManager::SetFontname(AssetManager::GetAsset("fonts/FangZhengLanTingHei.ttf"));
+        GLTextRenderManager::SetFontname(AssetManager::GetAsset("fonts/HiraginoMaruGothic.otf"));
         
         GLTextRenderManager::AddText(
                                      "line1",
-                                     L"Lorem ipsum dolor sit amet, consectetur adipisici elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                                     L"Lorem ipsum dolor sit amet, consectetur adipisici elit.",
                                      48, -1 + 8 * sx,
                                      1 - 48 * sy, sx, sy);
         
         GLTextRenderManager::AddText("line2",
-                                     L"汉体书写信息技术标准相容\n档案下载使用界面简单",
+                                     L"本当の始まりよ、本当の終わりへ。",
                                      48,
                                      -1 + 16 * sx, 1 - 100.5 * sy, sx, sy);
         
@@ -69,7 +69,7 @@ public:
         float sy = 2.0 / GetWindowFramebufferHeight();
         char buf[100];
         static int counter;
-        sprintf(buf, "%d", counter++);
+        sprintf(buf, "Frame %d", counter++);
         GLTextRenderManager::AddText(NULL, buf, 100, -1 + sx * 50, 1 - 200 * sy, sx, sy,
                                      glm::vec3(1.0f, 0.0f, 0.0f));
         
