@@ -219,6 +219,8 @@ public:
             glBindVertexArray(0);
         }
         
+        // performance warning: glGetTexImage is extremely slow, this is only
+        // for demonstration and should be avoided in production.
         glActiveTexture(GL_TEXTURE0);
         // tricky here, texture of index 0 is the output of current frame!
         glBindTexture(GL_TEXTURE_2D, fTextureX[0]);
