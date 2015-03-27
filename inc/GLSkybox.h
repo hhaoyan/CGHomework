@@ -21,7 +21,7 @@
  * sky box, there is no need to "Attach" cubemap (auto attached),
  * This may be changed in the future.
  */
-class GLSkybox : public GLObject{
+class GLSkybox : public GLObject, public GLAttachable{
 public:
     /** 
      * @brief Default constructor, you must have a cubemap initialized.
@@ -42,7 +42,9 @@ public:
      */
     void RenderSkybox(glm::mat4 mvp, glm::vec3 cameraPosition);
     
-    void Detach();
+    virtual void Attach(){Error(__FUNCTION__, "GLSkybox does not allow attach at runtime");}
+    virtual bool IsAttached(){ return true; }
+    virtual void Detach();
 private:
     GLMesh* fSkyGeometry;
     GLCubemapTexture* fCubemap;

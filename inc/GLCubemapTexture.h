@@ -11,8 +11,9 @@
 
 #include "GLTexture.h"
 #include "GLObject.h"
+#include "GLAttachable.h"
 
-class GLCubemapTexture : protected GLObject{
+class GLCubemapTexture : protected GLObject, public GLAttachable{
 public:
     GLCubemapTexture();
     GLCubemapTexture(int size, GLTexture::TextureMode mode);
@@ -63,9 +64,9 @@ public:
      */
     int TextureHeight() {return fTextureSize;}
     
-    void Attach();
-    void Detach();
-    bool IsAttached() {return fIsAttached;}
+    virtual void Attach();
+    virtual void Detach();
+    virtual bool IsAttached() {return fIsAttached;}
     
 protected:
     bool     fIsAttached;

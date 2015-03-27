@@ -11,8 +11,9 @@
 
 #include "gl.h"
 #include "GLObject.h"
+#include "GLAttachable.h"
 
-class GLFramebuffer : public GLObject{
+class GLFramebuffer : public GLObject, public GLAttachable{
 public:
     enum FramebufferType{
         kColorOnly = 1,
@@ -24,9 +25,9 @@ public:
     
     void Resize(int width, int height);
     
-    bool IsAttached() {return fIsAttached;}
-    void Attach();
-    void Detach();
+    virtual bool IsAttached() {return fIsAttached;}
+    virtual void Attach();
+    virtual void Detach();
     
     void BindFramebuffer(bool clear=true);
     void UnbindFramebuffer();

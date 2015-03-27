@@ -11,6 +11,7 @@
 
 #include "gl.h"
 #include "GLObject.h"
+#include "GLAttachable.h"
 
 class GLCubemapTexture;
 
@@ -29,7 +30,7 @@ class GLCubemapTexture;
  * recycled by GLApplication::ShutdownApplication.
  */
 
-class GLTexture : public GLObject{
+class GLTexture : public GLObject, public GLAttachable{
 public:
     friend class GLCubemapTexture;
     
@@ -124,9 +125,9 @@ public:
     int TextureWidth() {return fTextureSize[0];}
     int TextureHeight() {return fTextureSize[1];}
     
-    void Attach();
-    void Detach();
-    bool IsAttached();
+    virtual void Attach();
+    virtual void Detach();
+    virtual bool IsAttached();
     
 protected:
     virtual void DeleteObject();

@@ -107,6 +107,11 @@ GLShader::GLShader(const char* source, const char* uniforms){
 }
 
 void GLShader::DeleteObject(){
+    if(IsAttached())
+        Detach();
+}
+
+void GLShader::Detach(){
     if(fProgram != -1)
         glDeleteProgram(fProgram);
     

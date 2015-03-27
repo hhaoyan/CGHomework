@@ -11,8 +11,9 @@
 
 #include "gl.h"
 #include "GLObject.h"
+#include "GLAttachable.h"
 
-class GLMesh : public GLObject{
+class GLMesh : public GLObject, public GLAttachable{
 public:
     // masks indicate what components should mesh have
     enum MeshComponents{
@@ -105,9 +106,9 @@ public:
     
     void ComputeNormals();
     
-    bool IsAttached();
-    void Attach();
-    void Detach();
+    virtual bool IsAttached();
+    virtual void Attach();
+    virtual void Detach();
     
     GLuint GetVertexCount();
     GLuint GetIndexCount();

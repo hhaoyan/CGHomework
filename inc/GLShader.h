@@ -11,9 +11,10 @@
 
 #include "gl.h"
 #include "GLObject.h"
+#include "GLAttachable.h"
 #include <unordered_map>
 
-class GLShader : public GLObject{
+class GLShader : public GLObject, public GLAttachable{
 public:
     class SimpleShaderFactory{
     public:
@@ -54,7 +55,9 @@ public:
     
     void UseProgram();
     
-    void Detach();
+    virtual void Attach() {Error(__FUNCTION__, "GLShader does not allow attach in runtime");}
+    virtual bool IsAttached() {return true;}
+    virtual void Detach();
     
 protected:
     virtual void DeleteObject();
