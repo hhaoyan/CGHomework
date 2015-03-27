@@ -30,7 +30,6 @@ int DecodeImageFile(const char *filename, void **data, long* w, long* h, long* b
         memcpy(buffer, [rep bitmapData], [rep bytesPerPlane]);
         
         // flip the image
-        // FIXME: osx should flip the image in objective c
         {
             char* tmp = new char[[rep pixelsHigh] * 4];
             char* parsed = reinterpret_cast<char*>(buffer);
