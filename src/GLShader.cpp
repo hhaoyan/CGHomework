@@ -41,6 +41,38 @@ void main(void){
 //!FragmentShaderEnd!
 )THESHADER";
 
+const char SimpleTexturedShaderSrc[] = R"THESHADER(
+//!Shader!
+//!VertexShader!
+#version 400
+layout(location=0) in vec3 in_Position;
+layout(location=1) in vec2 in_Texcoord;
+layout(location=2) in vec3 in_Normal;
+
+uniform mat4 transformMatrix;
+out vec2 texcoord;
+
+void main(void)
+{
+    gl_Position = transformMatrix * vec4(in_Position, 1.0f);
+    texcoord = in_Texcoord;
+}
+
+//!VertexShaderEnd!
+
+//!FragmentShader!
+#version 400
+uniform sampler2D tex;
+
+in vec2 texcoord;
+out vec4 out_Color;
+
+void main(void){
+    out_Color = texture(tex, texcoord);
+}
+//!FragmentShaderEnd!
+)THESHADER";
+
 const char ShaderSign[] = "!Shader!";
 const char VertexShaderStart[] = "!VertexShader!";
 const char VertexShaderEnd[] = "!VertexShaderEnd!";
@@ -54,6 +86,11 @@ const char ComputeShaderEnd[] = "!ComputeShaderEnd!";
 GLShader* GLShader::SimpleShaderFactory::SimpleColoredShader(){
     GLShader* shader = new GLShader();
     shader->Compile(SimpleColoredShaderSrc, "transformMatrix\nstaticColor");
+    return shader;
+}
+
+GLShader* GLShader::SimpleShaderFactory::SimpleTexturedShader(){
+    GLShader* shader = new GLShader(SimpleTexturedShaderSrc, "transformMatrix\ntex");
     return shader;
 }
 

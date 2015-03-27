@@ -20,6 +20,9 @@ public:
         // this creates a simple colored shader with uniform
         // "transformMatrix" and "staticColor"
         static GLShader* SimpleColoredShader();
+        
+        // uniform: tex
+        static GLShader* SimpleTexturedShader();
     };
     GLShader();
     GLShader(const char* source, const char* uniforms);
