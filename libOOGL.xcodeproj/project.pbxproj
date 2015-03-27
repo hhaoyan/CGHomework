@@ -90,6 +90,8 @@
 		298CA7651AC4E52100482ABB /* posy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = posy.jpg; sourceTree = "<group>"; };
 		298CA7661AC4E52100482ABB /* posz.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = posz.jpg; sourceTree = "<group>"; };
 		298CA7671AC4E52100482ABB /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
+		298CA7681AC50E7E00482ABB /* fresnel.shader */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fresnel.shader; path = assets/fresnel.shader; sourceTree = SOURCE_ROOT; };
+		298CA7691AC5532600482ABB /* GLAttachable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLAttachable.h; path = inc/GLAttachable.h; sourceTree = SOURCE_ROOT; };
 		29F265881AC1AA0900DD859A /* negx.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = negx.jpg; sourceTree = "<group>"; };
 		29F265891AC1AA0900DD859A /* negy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = negy.jpg; sourceTree = "<group>"; };
 		29F2658A1AC1AA0900DD859A /* negz.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = negz.jpg; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				293661CE1AC0FF1F0084392E /* GLTexture.h */,
 				293661EA1AC15B340084392E /* GLCubemapTexture.h */,
 				298CA7541AC4514800482ABB /* GLSkybox.h */,
+				298CA7691AC5532600482ABB /* GLAttachable.h */,
 				293661CF1AC0FF1F0084392E /* TrackBallCamera.h */,
 			);
 			name = inc;
@@ -198,6 +201,7 @@
 				293661DD1AC111E10084392E /* shadow.shader */,
 				298CA7571AC4D70900482ABB /* texture_mapping.jpg */,
 				293661DE1AC111E10084392E /* wall.bmp */,
+				298CA7681AC50E7E00482ABB /* fresnel.shader */,
 			);
 			name = assets;
 			sourceTree = "<group>";
