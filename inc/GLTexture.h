@@ -116,6 +116,11 @@ public:
      */
     void GenerateMipmap();
     
+    /**
+     * @brief Flips the image.
+     */
+    void FlipBuffer();
+    
     int TextureWidth() {return fTextureSize[0];}
     int TextureHeight() {return fTextureSize[1];}
     

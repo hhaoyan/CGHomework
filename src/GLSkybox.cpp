@@ -19,7 +19,7 @@ out vec3 texcoord;
 
 void main(){
     gl_Position = MVP * vec4(position, 1.0f);
-    texcoord = normalize(position);
+    texcoord = position;
 }
 
 //!VertexShaderEnd!
@@ -33,7 +33,6 @@ uniform samplerCube tex;
 
 void main(){
     out_color = texture(tex, texcoord);
-    //out_color = vec4(texcoord.x, texcoord.y, texcoord.z, 1.0f);
 }
 //!FragmentShaderEnd!
 )SHADER";
@@ -65,7 +64,6 @@ void GLSkybox::RenderSkybox(glm::mat4 mvp, glm::vec3 cameraPosition){
     
     //glDisable(GL_DEPTH_TEST);
     //glDepthMask(GL_FALSE);
-    glFrontFace(GL_CW);
     
     mvp = mvp * glm::translate(cameraPosition);
     

@@ -64,6 +64,7 @@ GLCubemapTexture* GLCubemapTexture::LoadFromFiles(const char* prefix,
                     prefix, px, nx, py, ny, pz, nz);
             goto fail;
         }
+        map->fTextures[i].FlipBuffer();
     }
     
     map->fTextureSize = size;

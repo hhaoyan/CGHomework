@@ -28,6 +28,24 @@ GLTexture::GLTexture(int width, int height, TextureMode mode):
     SetTextureSize(width, height, mode);
 }
 
+void GLTexture::FlipBuffer(){
+    if(!fBuffer)
+        Error(__FUNCTION__, "no buffer");
+    
+    char* tmp = new char[TextureHeight() * 4];
+    char* parsed = reinterpret_cast<char*>(fBuffer);
+    long height = TextureHeight();
+    long width = TextureWidth();
+
+    for(int i = 0;i<height / 2;i++){
+        memcpy(tmp, &parsed[i * width * 4], width * 4);
+        memcpy(&parsed[i * width * 4], &parsed[(height - 1 - i) * width * 4], width * 4);
+        memcpy(&parsed[(height - i - 1) * width * 4], tmp, width * 4);
+    }
+        
+    delete [] tmp;
+}
+
 GLTexture* GLTexture::LoadFromFile(const char *filename, GLTexture* old){
     GLTexture * texture;
     if(old){
