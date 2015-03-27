@@ -63,6 +63,7 @@ void GLMesh::UseMeshAndDrawTriangles(){
     
     UseMesh();
     glDrawElements(GL_TRIANGLES, fIndexCount, GL_UNSIGNED_SHORT, 0);
+    OpenGLShouldHaveNoError(__FUNCTION__);
 }
 
 void GLMesh::Detach(){
@@ -328,8 +329,7 @@ unsigned short& GLMesh::IndexDataProxy::IndexAt(unsigned int index){
     return *static_cast<unsigned short*>(buf);
 }
 
-void AddPlaneToMesh(GLMesh::VertexDataProxy& vproxy, GLMesh::IndexDataProxy& iproxy, int vstart, int istart,
-                    glm::vec3 p0, glm::vec3 p1, glm::vec3 p2, glm::vec3 p3){
+void AddPlaneToMesh(GLMesh::VertexDataProxy& vproxy, GLMesh::IndexDataProxy& iproxy, int vstart, int istart, glm::vec3 p0, glm::vec3 p1, glm::vec3 p2, glm::vec3 p3, bool texcoord=true){
     
     static glm::vec2 texs[4] = {
         glm::vec2(0.0f, 1.0f),
@@ -339,20 +339,22 @@ void AddPlaneToMesh(GLMesh::VertexDataProxy& vproxy, GLMesh::IndexDataProxy& ipr
     };
     
     vproxy.Position(vstart) = p0;
-    vproxy.TextureCoord(vstart++) = texs[0];
-    vproxy.Position(vstart) = p1;
-    vproxy.TextureCoord(vstart++) = texs[1];
-    vproxy.Position(vstart) = p2;
-    vproxy.TextureCoord(vstart++) = texs[2];
-    vproxy.Position(vstart) = p3;
-    vproxy.TextureCoord(vstart++) = texs[3];
+    vproxy.Position(vstart+1) = p1;
+    vproxy.Position(vstart+2) = p2;
+    vproxy.Position(vstart+3) = p3;
+    if(texcoord){
+        vproxy.TextureCoord(vstart) = texs[0];
+        vproxy.TextureCoord(vstart+1) = texs[1];
+        vproxy.TextureCoord(vstart+2) = texs[2];
+        vproxy.TextureCoord(vstart+3) = texs[3];
+    }
     
     static unsigned short inxs[6] = {
         0, 2, 1, 1, 2, 3
     };
     
     for (int i=0; i<6; ++i) {
-        iproxy.IndexAt(istart+i) = inxs[i] + vstart - 4;
+        iproxy.IndexAt(istart+i) = inxs[i] + vstart;
     }
 }
 
@@ -378,7 +380,7 @@ GLMesh* GLMesh::SimpleMeshGenerator::Plane(GLMesh::MeshComponents mode, glm::vec
 GLMesh* GLMesh::SimpleMeshGenerator::Cuboid(GLMesh::MeshComponents mode, float x, float y, float z){
     GLMesh* mesh = new GLMesh(mode);
     
-    if(mode != (kPosition | kTextureCoord | kNormal)){
+    if((mode & (~kPosition) & (~kTextureCoord) & (~kNormal))){
         mesh->Error(__FUNCTION__, "Plane generator for kTangent|kBitangent not implemented");
     }
     
@@ -392,39 +394,46 @@ GLMesh* GLMesh::SimpleMeshGenerator::Cuboid(GLMesh::MeshComponents mode, float x
                    glm::vec3(-x / 2.0f, y / 2.0f, z / 2.0f),
                    glm::vec3(x / 2.0f, y / 2.0f, z / 2.0f),
                    glm::vec3(-x / 2.0f, -y / 2.0f, z/ 2.0f),
-                   glm::vec3(x / 2.0f, -y / 2.0f, z / 2.0f));
+                   glm::vec3(x / 2.0f, -y / 2.0f, z / 2.0f),
+                   (mode & kTextureCoord) != 0);
     
     AddPlaneToMesh(vproxy, iproxy, 4, 6,
                    glm::vec3(x / 2.0f, y / 2.0f, -z / 2.0f),
                    glm::vec3(-x / 2.0f, y / 2.0f, -z / 2.0f),
                    glm::vec3(x / 2.0f, -y / 2.0f, -z / 2.0f),
-                   glm::vec3(-x / 2.0f, -y / 2.0f, -z/ 2.0f));
+                   glm::vec3(-x / 2.0f, -y / 2.0f, -z/ 2.0f),
+                   (mode & kTextureCoord) != 0);
     
     AddPlaneToMesh(vproxy, iproxy, 8, 12,
                    glm::vec3(-x / 2.0f, y / 2.0f, -z / 2.0f),
                    glm::vec3(-x / 2.0f, y / 2.0f, z / 2.0f),
                    glm::vec3(-x / 2.0f, -y / 2.0f, -z / 2.0f),
-                   glm::vec3(-x / 2.0f, -y / 2.0f, z / 2.0f));
+                   glm::vec3(-x / 2.0f, -y / 2.0f, z / 2.0f),
+                   (mode & kTextureCoord) != 0);
     
     AddPlaneToMesh(vproxy, iproxy, 12, 18,
                    glm::vec3(x / 2.0f, y / 2.0f, z / 2.0f),
                    glm::vec3(x / 2.0f, y / 2.0f, -z / 2.0f),
                    glm::vec3(x / 2.0f, -y / 2.0f, z / 2.0f),
-                   glm::vec3(x / 2.0f, -y / 2.0f, -z / 2.0f));
+                   glm::vec3(x / 2.0f, -y / 2.0f, -z / 2.0f),
+                   (mode & kTextureCoord) != 0);
     
     AddPlaneToMesh(vproxy, iproxy, 16, 24,
                    glm::vec3(-x / 2.0f, y / 2.0f, -z / 2.0f),
                    glm::vec3(x / 2.0f, y / 2.0f, -z / 2.0f),
                    glm::vec3(-x / 2.0f, y / 2.0f, z / 2.0f),
-                   glm::vec3(x / 2.0f, y / 2.0f, z / 2.0f));
+                   glm::vec3(x / 2.0f, y / 2.0f, z / 2.0f),
+                   (mode & kTextureCoord) != 0);
     
     AddPlaneToMesh(vproxy, iproxy, 20, 30,
                    glm::vec3(x / 2.0f, -y / 2.0f, -z / 2.0f),
                    glm::vec3(-x / 2.0f, -y / 2.0f, -z / 2.0f),
                    glm::vec3(x / 2.0f, -y / 2.0f, z / 2.0f),
-                   glm::vec3(-x / 2.0f, -y / 2.0f, z / 2.0f));
+                   glm::vec3(-x / 2.0f, -y / 2.0f, z / 2.0f),
+                   (mode & kTextureCoord) != 0);
     
-    mesh->ComputeNormals();
+    if((mode & kNormal) != 0)
+        mesh->ComputeNormals();
     return mesh;
 }
 
