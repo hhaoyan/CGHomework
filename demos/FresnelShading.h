@@ -55,9 +55,10 @@ public:
     }
     virtual void CreateApplication(){
         fshader = new GLShader(AssetManager::GetAsset("fresnel.shader"), "cameraPosition\nmRefractionRatio\nmFresnelBias\nmFresnelScale\nmFresnelPower\nmvpMatrix\nmodelMatrix\ntCube");
+        fshader->Attach();
         
-        //sphere = GLMesh::SimpleMeshGenerator::Sphere(GLMesh::kPosTexNor, 1.0f, 50, 50);
-        sphere = GLMesh::SimpleMeshGenerator::Cuboid(GLMesh::kPosTexNor, 1.0f, 1.0f, 1.0f);
+        sphere = GLMesh::SimpleMeshGenerator::Sphere(GLMesh::kPosTexNor, 1.0f, 50, 50);
+        //sphere = GLMesh::SimpleMeshGenerator::Cuboid(GLMesh::kPosTexNor, 1.0f, 1.0f, 1.0f);
         sphere->Attach();
         
         camera = new TrackBallCamera(this, 5.0f, 0.1f, 100.0f, 45.0);
@@ -66,6 +67,7 @@ public:
                                           "posx.jpg", "negx.jpg", "posy.jpg", "negy.jpg", "posz.jpg", "negz.jpg");
         skytex->Attach();
         sky = new GLSkybox(skytex);
+        sky->Attach();
         
         GLTextRenderManager::SetFontname(AssetManager::GetAsset("fonts/Consolas.ttf"));
         glClearColor(0.4f, 0.5f, 0.66f, 1.0f);

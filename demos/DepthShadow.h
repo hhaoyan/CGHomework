@@ -71,9 +71,12 @@ public:
         
         fShader = new GLShader();
         fShader->Compile(AssetManager::GetAsset("shadow.shader"), "mtTrans\nmtLight\nmyTextureSampler\nv3Eye\ndepthSampler\nbias");
+        fShader->Attach();
         fDepth = new GLShader();
         fDepth->Compile(AssetManager::GetAsset("depth.shader"), "mtTrans");
+        fDepth->Attach();
         fSimpleShader = GLShader::SimpleShaderFactory::SimpleColoredShader();
+        fSimpleShader->Attach();
         
         fTexture = GLTexture::LoadFromFile(AssetManager::GetAsset("wall.bmp"));
         fTexture->Attach();

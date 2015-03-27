@@ -136,6 +136,7 @@ public:
         {
             // init the shader
             fComputeShader = new GLShader(AssetManager::GetAsset("compute.shader"), "x0t\np0t");
+            fComputeShader->Attach();
             
             OpenGLShouldHaveNoError("ComputeShaderLoading");
         }
@@ -168,6 +169,7 @@ public:
         {
             // the visualizer
             fVisualizerShader = new GLShader(AssetManager::GetAsset("texture_visualize.shader"), "tex");
+            fVisualizerShader->Attach();
         }
     }
     

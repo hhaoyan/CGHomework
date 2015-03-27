@@ -38,7 +38,7 @@ void main(){
 )SHADER";
 
 GLSkybox::GLSkybox(GLCubemapTexture* cubemap):
-fCubemap(cubemap){
+fCubemap(cubemap), fIsAttached(false){
     
     fShader = new GLShader(SkyBoxShader, "MVP\ntex");
     fSkyGeometry = GLMesh::SimpleMeshGenerator::Cuboid(GLMesh::kPosition, 1.0f, 1.0f, 1.0f);
@@ -49,11 +49,14 @@ GLSkybox::~GLSkybox(){
     delete fCubemap;
     delete fShader;
     delete fSkyGeometry;
+    if(IsAttached())
+        Warning(__FUNCTION__, "GLSkybox isn't detached");
 }
 
 void GLSkybox::Detach(){
     fCubemap->Detach();
     fSkyGeometry->Detach();
+    fIsAttached = false;
 }
 
 void GLSkybox::RenderSkybox(glm::mat4 mvp, glm::vec3 cameraPosition){

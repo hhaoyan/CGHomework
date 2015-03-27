@@ -19,7 +19,7 @@
  *
  * Since you must have a cubemap texture ready before creating
  * sky box, there is no need to "Attach" cubemap (auto attached),
- * This may be changed in the future.
+ * This behavior may change in the future.
  */
 class GLSkybox : public GLObject, public GLAttachable{
 public:
@@ -42,10 +42,14 @@ public:
      */
     void RenderSkybox(glm::mat4 mvp, glm::vec3 cameraPosition);
     
-    virtual void Attach(){Error(__FUNCTION__, "GLSkybox does not allow attach at runtime");}
-    virtual bool IsAttached(){ return true; }
+    virtual void Attach(){
+        /* do nothing, developers should assume GLskybox needs attaching.*/
+        fIsAttached = true;
+    }
+    virtual bool IsAttached(){ return fIsAttached; }
     virtual void Detach();
 private:
+    bool fIsAttached;
     GLMesh* fSkyGeometry;
     GLCubemapTexture* fCubemap;
     GLShader* fShader;

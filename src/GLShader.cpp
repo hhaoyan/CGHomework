@@ -94,11 +94,11 @@ GLShader* GLShader::SimpleShaderFactory::SimpleTexturedShader(){
     return shader;
 }
 
-GLShader::GLShader() : fProgram(-1){
+GLShader::GLShader() : fProgram(-1), fIsAttached(false){
     memset(fShaders, -1, sizeof(fShaders));
 }
 
-GLShader::GLShader(const char* source, const char* uniforms){
+GLShader::GLShader(const char* source, const char* uniforms):fIsAttached(false){
     memset(fShaders, -1, sizeof(fShaders));
     fProgram = -1;
     
@@ -119,6 +119,7 @@ void GLShader::Detach(){
         if(shader != -1)
             glDeleteShader(shader);
     }
+    fIsAttached = false;
 }
 
 bool IsFile(std::string& str){

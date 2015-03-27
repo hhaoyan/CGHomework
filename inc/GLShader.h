@@ -55,8 +55,11 @@ public:
     
     void UseProgram();
     
-    virtual void Attach() {Error(__FUNCTION__, "GLShader does not allow attach in runtime");}
-    virtual bool IsAttached() {return true;}
+    virtual void Attach() {
+        /* do nothing, developers should assume shaders do need attaching */
+        fIsAttached = true;
+    }
+    virtual bool IsAttached() {return fIsAttached;}
     virtual void Detach();
     
 protected:
@@ -70,6 +73,7 @@ private:
         kComputeShader,
     };
     
+    bool fIsAttached;
     GLint       fShaders[sizeof(eShaderType)];
     GLint       fProgram;
     std::unordered_map<std::string, GLuint> fUniforms;
