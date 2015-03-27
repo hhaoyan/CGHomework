@@ -24,6 +24,7 @@
 		293661FF1AC191640084392E /* MacOSX.mm in Sources */ = {isa = PBXBuildFile; fileRef = 293661FE1AC191640084392E /* MacOSX.mm */; };
 		294389DA1AC2BE1C00A2BDF8 /* GLTextRenderManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 294389D91AC2BE1C00A2BDF8 /* GLTextRenderManager.cpp */; };
 		296F42991AC264E10098E71A /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 296F42981AC264E10098E71A /* libfreetype.a */; };
+		298CA7561AC4527E00482ABB /* GLSkybox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 298CA7551AC4527E00482ABB /* GLSkybox.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -78,6 +79,17 @@
 		296F42981AC264E10098E71A /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = "freetype/freetype-2.5.5/osx_build/libfreetype.a"; sourceTree = "<group>"; };
 		296F429A1AC2A1E50098E71A /* FontDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FontDemo.h; path = demos/FontDemo.h; sourceTree = SOURCE_ROOT; };
 		298CA74F1AC3B90600482ABB /* texture_visualize.shader */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = texture_visualize.shader; path = assets/texture_visualize.shader; sourceTree = SOURCE_ROOT; };
+		298CA7531AC4507A00482ABB /* FresnelShading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FresnelShading.h; path = demos/FresnelShading.h; sourceTree = SOURCE_ROOT; };
+		298CA7541AC4514800482ABB /* GLSkybox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLSkybox.h; path = inc/GLSkybox.h; sourceTree = SOURCE_ROOT; };
+		298CA7551AC4527E00482ABB /* GLSkybox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GLSkybox.cpp; path = src/GLSkybox.cpp; sourceTree = SOURCE_ROOT; };
+		298CA7571AC4D70900482ABB /* texture_mapping.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = texture_mapping.jpg; path = assets/texture_mapping.jpg; sourceTree = SOURCE_ROOT; };
+		298CA7611AC4E52100482ABB /* negx.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = negx.jpg; sourceTree = "<group>"; };
+		298CA7621AC4E52100482ABB /* negy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = negy.jpg; sourceTree = "<group>"; };
+		298CA7631AC4E52100482ABB /* negz.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = negz.jpg; sourceTree = "<group>"; };
+		298CA7641AC4E52100482ABB /* posx.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = posx.jpg; sourceTree = "<group>"; };
+		298CA7651AC4E52100482ABB /* posy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = posy.jpg; sourceTree = "<group>"; };
+		298CA7661AC4E52100482ABB /* posz.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = posz.jpg; sourceTree = "<group>"; };
+		298CA7671AC4E52100482ABB /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 		29F265881AC1AA0900DD859A /* negx.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = negx.jpg; sourceTree = "<group>"; };
 		29F265891AC1AA0900DD859A /* negy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = negy.jpg; sourceTree = "<group>"; };
 		29F2658A1AC1AA0900DD859A /* negz.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = negz.jpg; sourceTree = "<group>"; };
@@ -140,6 +152,7 @@
 		293661C61AC0FF040084392E /* src */ = {
 			isa = PBXGroup;
 			children = (
+				298CA7551AC4527E00482ABB /* GLSkybox.cpp */,
 				293661FE1AC191640084392E /* MacOSX.mm */,
 				293661EB1AC1666D0084392E /* GLCubemapTexture.cpp */,
 				293661B61AC0FEF70084392E /* GLApplication.cpp */,
@@ -167,6 +180,7 @@
 				293661CD1AC0FF1F0084392E /* GLShader.h */,
 				293661CE1AC0FF1F0084392E /* GLTexture.h */,
 				293661EA1AC15B340084392E /* GLCubemapTexture.h */,
+				298CA7541AC4514800482ABB /* GLSkybox.h */,
 				293661CF1AC0FF1F0084392E /* TrackBallCamera.h */,
 			);
 			name = inc;
@@ -175,12 +189,14 @@
 		293661DA1AC111B20084392E /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				298CA7601AC4E52100482ABB /* Park2 */,
 				293661F51AC173060084392E /* Yokohama3 */,
 				293661DB1AC111E10084392E /* depth.shader */,
 				293661DC1AC111E10084392E /* teapot.obj */,
 				2952648F1AC2E46400DB79A9 /* compute.shader */,
 				298CA74F1AC3B90600482ABB /* texture_visualize.shader */,
 				293661DD1AC111E10084392E /* shadow.shader */,
+				298CA7571AC4D70900482ABB /* texture_mapping.jpg */,
 				293661DE1AC111E10084392E /* wall.bmp */,
 			);
 			name = assets;
@@ -190,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				295264901AC2FA5300DB79A9 /* VSCompute.h */,
+				298CA7531AC4507A00482ABB /* FresnelShading.h */,
 				293661E01AC143F70084392E /* DepthShadow.h */,
 				296F429A1AC2A1E50098E71A /* FontDemo.h */,
 			);
@@ -209,6 +226,21 @@
 			);
 			name = Yokohama3;
 			path = assets/Yokohama3;
+			sourceTree = SOURCE_ROOT;
+		};
+		298CA7601AC4E52100482ABB /* Park2 */ = {
+			isa = PBXGroup;
+			children = (
+				298CA7611AC4E52100482ABB /* negx.jpg */,
+				298CA7621AC4E52100482ABB /* negy.jpg */,
+				298CA7631AC4E52100482ABB /* negz.jpg */,
+				298CA7641AC4E52100482ABB /* posx.jpg */,
+				298CA7651AC4E52100482ABB /* posy.jpg */,
+				298CA7661AC4E52100482ABB /* posz.jpg */,
+				298CA7671AC4E52100482ABB /* readme.txt */,
+			);
+			name = Park2;
+			path = assets/Park2;
 			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
@@ -271,6 +303,7 @@
 				293661C31AC0FEF70084392E /* GLTexture.cpp in Sources */,
 				293661BF1AC0FEF70084392E /* GLFramebuffer.cpp in Sources */,
 				293661C21AC0FEF70084392E /* GLShader.cpp in Sources */,
+				298CA7561AC4527E00482ABB /* GLSkybox.cpp in Sources */,
 				293661C11AC0FEF70084392E /* GLObject.cpp in Sources */,
 				294389DA1AC2BE1C00A2BDF8 /* GLTextRenderManager.cpp in Sources */,
 				293661BE1AC0FEF70084392E /* GLApplication.cpp in Sources */,

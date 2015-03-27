@@ -56,7 +56,7 @@ public:
         fshader = GLShader::SimpleShaderFactory::SimpleTexturedShader();
         
         camera = new TrackBallCamera(this, 5.0f, 0.1f, 100.0f, 45.0);
-        sky = GLSkybox::CreateFromCubemap(AssetManager::GetAsset("/Yokohama3/"),
+        sky = GLSkybox::CreateFromCubemap(AssetManager::GetAsset("/Park2/"),
                                           "posx.jpg", "negx.jpg", "posy.jpg", "negy.jpg", "posz.jpg", "negz.jpg");
         
         GLTextRenderManager::SetFontname(AssetManager::GetAsset("fonts/Consolas.ttf"));
@@ -73,13 +73,14 @@ public:
         
         glViewport(0, 0, GetWindowFramebufferWidth(), GetWindowFramebufferHeight());
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        sky->RenderSkybox(mvp, cameraPosition);
         
         tex->ActivateAndBindTexture(GL_TEXTURE0);
         fshader->UseProgram();
         fshader->Uniform1i("tex", 0);
         fshader->UniformMatrix4fv("transformMatrix", 1, GL_FALSE, &mvp[0][0]);
         cube->UseMeshAndDrawTriangles();
-        sky->RenderSkybox(mvp, cameraPosition);
+        
         
         float sx = 2.0 / GetWindowFramebufferWidth();
         float sy = 2.0 / GetWindowFramebufferHeight();
