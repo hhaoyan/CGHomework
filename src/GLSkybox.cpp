@@ -62,8 +62,8 @@ void GLSkybox::RenderSkybox(glm::mat4 mvp, glm::vec3 cameraPosition){
     GLboolean depthMask;
     glGetBooleanv(GL_DEPTH_WRITEMASK, &depthMask);
     
-    //glDisable(GL_DEPTH_TEST);
-    //glDepthMask(GL_FALSE);
+    glDisable(GL_DEPTH_TEST);
+    glDepthMask(GL_FALSE);
     
     mvp = mvp * glm::translate(cameraPosition);
     
