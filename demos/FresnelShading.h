@@ -17,28 +17,8 @@
 #include "glm/gtc/random.hpp"
 #include <unistd.h>
 #include "GLSkybox.h"
+#include "AssetManager.h"
 
-
-class AssetManager{
-public:
-    /**
-     * @brief Get the filename of an asset.
-     *
-     * To make sure your executable loads the assets correctly,
-     * you should change the working directory of main executable
-     * to the parent directory of "asset" folder.
-     *
-     * On windows, getcwd should be replaced by GetCurrentDirectory()
-     */
-    static const char* GetAsset(const char* name){
-        static std::string oldAsset;
-        
-        oldAsset = getcwd(NULL, 0);
-        oldAsset.append("/assets/");
-        oldAsset.append(name);
-        return oldAsset.c_str();
-    }
-};
 
 class FresnelShading : public GLApplication{
     GLCubemapTexture* skytex;
