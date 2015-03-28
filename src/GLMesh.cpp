@@ -72,7 +72,7 @@ void GLMesh::Detach(){
     
     glDeleteBuffers(1, &fVertexBufferObject);
     glDeleteBuffers(1, &fIndexBufferObject);
-    glDeleteVertexArrays(1, &fVertexBufferObject);
+    glDeleteVertexArrays(1, &fVertexArrayObject);
     OpenGLShouldHaveNoError(__FUNCTION__);
     
     fAttached = false;
