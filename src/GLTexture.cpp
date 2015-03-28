@@ -201,7 +201,7 @@ void GLTexture::GenerateMipmap(){
     OpenGLShouldHaveNoError(__FUNCTION__);
 }
 
-void GLTexture::glTexImage2DInternal(GLenum target, GLint level){
+void GLTexture::TexImage2DInternal(GLenum target, GLint level){
     if(!fBuffer)
         Error(__FUNCTION__, "texture buffer not ready");
     
@@ -239,7 +239,7 @@ void GLTexture::Attach(){
     glGenTextures(1, &fTexture);
     glBindTexture(GL_TEXTURE_2D, fTexture);
     
-    glTexImage2DInternal(GL_TEXTURE_2D, 0);
+    TexImage2DInternal(GL_TEXTURE_2D, 0);
     
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);

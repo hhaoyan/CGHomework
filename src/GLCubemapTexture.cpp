@@ -121,7 +121,7 @@ void GLCubemapTexture::Attach(){
         GL_TEXTURE_CUBE_MAP_NEGATIVE_Z,
     };
     for(int i = 0;i<6;++i){
-        fTextures[i].glTexImage2DInternal(mapper[i], 0);
+        fTextures[i].TexImage2DInternal(mapper[i], 0);
     }
     
     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);

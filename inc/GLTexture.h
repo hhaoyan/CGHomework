@@ -133,7 +133,7 @@ protected:
     virtual void DeleteObject();
     
 private:
-    void glTexImage2DInternal(GLenum target, GLint level);
+    void TexImage2DInternal(GLenum target, GLint level);
     
     bool     fIsAttached;
     GLuint   fTexture;
