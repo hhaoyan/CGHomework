@@ -73,7 +73,7 @@ void main(void){
 //!FragmentShaderEnd!
 )THESHADER";
 
-const char ShaderSign[] = "!Shader!";
+const char ShaderSign[] = "Shader!";
 const char VertexShaderStart[] = "!VertexShader!";
 const char VertexShaderEnd[] = "!VertexShaderEnd!";
 const char FragShaderStart[] = "!FragmentShader!";
