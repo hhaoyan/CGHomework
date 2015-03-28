@@ -207,19 +207,19 @@ void GLTexture::TexImage2DInternal(GLenum target, GLint level){
     
     switch (fMode) {
         case kBGR888:
-            glTexImage2D(target, level, GL_RGB, fTextureSize[0], fTextureSize[1], 0, GL_BGR, GL_UNSIGNED_BYTE, fBuffer);
+            glTexImage2D(target, level, GL_RGB8, fTextureSize[0], fTextureSize[1], 0, GL_BGR, GL_UNSIGNED_BYTE, fBuffer);
             break;
             
         case kBGRA8888:
-            glTexImage2D(target, level, GL_RGBA, fTextureSize[0], fTextureSize[1], 0, GL_BGRA, GL_UNSIGNED_BYTE, fBuffer);
+            glTexImage2D(target, level, GL_RGBA8, fTextureSize[0], fTextureSize[1], 0, GL_BGRA, GL_UNSIGNED_BYTE, fBuffer);
             break;
             
         case kRGB888:
-            glTexImage2D(target, level, GL_RGB, fTextureSize[0], fTextureSize[1], 0, GL_RGB, GL_UNSIGNED_BYTE, fBuffer);
+            glTexImage2D(target, level, GL_RGB8, fTextureSize[0], fTextureSize[1], 0, GL_RGB, GL_UNSIGNED_BYTE, fBuffer);
             break;
             
         case kRGBA8888:
-            glTexImage2D(target, level, GL_RGBA, fTextureSize[0], fTextureSize[1], 0, GL_RGBA, GL_UNSIGNED_BYTE, fBuffer);
+            glTexImage2D(target, level, GL_RGBA8, fTextureSize[0], fTextureSize[1], 0, GL_RGBA, GL_UNSIGNED_BYTE, fBuffer);
             break;
             
         case kGrayscale8:
