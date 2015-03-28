@@ -92,6 +92,7 @@
 		298CA7671AC4E52100482ABB /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 		298CA7681AC50E7E00482ABB /* fresnel.shader */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fresnel.shader; path = assets/fresnel.shader; sourceTree = SOURCE_ROOT; };
 		298CA7691AC5532600482ABB /* GLAttachable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLAttachable.h; path = inc/GLAttachable.h; sourceTree = SOURCE_ROOT; };
+		298CA76A1AC6C7B200482ABB /* AssetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AssetManager.h; path = inc/AssetManager.h; sourceTree = SOURCE_ROOT; };
 		29F265881AC1AA0900DD859A /* negx.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = negx.jpg; sourceTree = "<group>"; };
 		29F265891AC1AA0900DD859A /* negy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = negy.jpg; sourceTree = "<group>"; };
 		29F2658A1AC1AA0900DD859A /* negz.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = negz.jpg; sourceTree = "<group>"; };
@@ -172,6 +173,7 @@
 		293661C71AC0FF0E0084392E /* inc */ = {
 			isa = PBXGroup;
 			children = (
+				298CA76A1AC6C7B200482ABB /* AssetManager.h */,
 				293661FD1AC190EF0084392E /* ObjectiveCInterface.h */,
 				293661C81AC0FF1F0084392E /* gl.h */,
 				294389D81AC2BE1200A2BDF8 /* GLTextRenderManager.h */,
