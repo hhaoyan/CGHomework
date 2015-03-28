@@ -10,6 +10,51 @@
 #include <fstream>
 #include <vector>
 #include <sstream>
+#include <unordered_map>
+
+/**
+ * @brief The registry for all vertex arrays
+ */
+struct VertexArrayRef{
+    GLuint fVertexArrayObject;
+    int fUsageCount;
+};
+std::unordered_map<int, VertexArrayRef> gVertexArrays;
+
+bool IsVAOExistAndGetVAO(GLMesh::MeshComponents mode, GLuint* fVAO){
+    int key = static_cast<int>(mode);
+    
+    auto item = gVertexArrays.find(key);
+    if(item == gVertexArrays.end()){
+        return false;
+    } else {
+        item->second.fUsageCount += 1;
+        *fVAO = item->second.fVertexArrayObject;
+        return true;
+    }
+}
+
+void RegisterNewVAO(GLMesh::MeshComponents mode, GLuint fVAO){
+    // mode should never exist in gVA!
+    VertexArrayRef ref;
+    ref.fUsageCount = 1;
+    ref.fVertexArrayObject = fVAO;
+    gVertexArrays[static_cast<int>(mode)] = ref;
+}
+
+bool FreeVAOAndIfNeedsDestruct(GLMesh::MeshComponents mode){
+    auto item = gVertexArrays.find(static_cast<int>(mode));
+    
+    if(item != gVertexArrays.end()){
+        item->second.fUsageCount -= 1;
+        if(item->second.fUsageCount <= 0){
+            gVertexArrays.erase(item);
+            return true;
+        }
+    }
+    
+    return false;
+}
 
 GLMesh::GLMesh(GLMesh::MeshComponents comp):
     fVertexBuffer(0), fIndexBuffer(0), fVertexCount(0), fIndexCount(0),
@@ -72,7 +117,9 @@ void GLMesh::Detach(){
     
     glDeleteBuffers(1, &fVertexBufferObject);
     glDeleteBuffers(1, &fIndexBufferObject);
-    glDeleteVertexArrays(1, &fVertexArrayObject);
+    if(FreeVAOAndIfNeedsDestruct(fComp))
+        glDeleteVertexArrays(1, &fVertexArrayObject);
+    
     OpenGLShouldHaveNoError(__FUNCTION__);
     
     fAttached = false;
@@ -91,41 +138,47 @@ void GLMesh::Attach(){
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, fIndexBufferObject);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned short) * fIndexCount, fIndexBuffer, GL_STATIC_DRAW);
     
-    glGenVertexArrays(1, &fVertexArrayObject);
-    glBindVertexArray(fVertexArrayObject);
+    if(!IsVAOExistAndGetVAO(fComp, &fVertexArrayObject)){
+        glGenVertexArrays(1, &fVertexArrayObject);
+        glBindVertexArray(fVertexArrayObject);
     
-    GLuint id = 0;
-    int offset = 0;
-    if(fComp & kPosition){
-        glVertexAttribPointer(id, 3, GL_FLOAT, GL_FALSE, fSizePerVertex, reinterpret_cast<GLvoid*>(offset));
-        id += 1;
-        offset += sizeof(glm::vec3);
-    }
-    if(fComp & kTextureCoord){
-        glVertexAttribPointer(id, 2, GL_FLOAT, GL_FALSE, fSizePerVertex, reinterpret_cast<GLvoid*>(offset));
-        id += 1;
-        offset += sizeof(glm::vec2);
-    }
-    if(fComp & kNormal){
-        glVertexAttribPointer(id, 3, GL_FLOAT, GL_FALSE, fSizePerVertex, reinterpret_cast<GLvoid*>(offset));
-        id += 1;
-        offset += sizeof(glm::vec3);
-    }
-    if(fComp & kTangent){
-        glVertexAttribPointer(id, 3, GL_FLOAT, GL_FALSE, fSizePerVertex, reinterpret_cast<GLvoid*>(offset));
-        id += 1;
-        offset += sizeof(glm::vec3);
-    }
-    if(fComp & kBitangent){
-        glVertexAttribPointer(id, 3, GL_FLOAT, GL_FALSE, fSizePerVertex, reinterpret_cast<GLvoid*>(offset));
-        id += 1;
-        offset += sizeof(glm::vec3);
+        GLuint id = 0;
+        int offset = 0;
+        if(fComp & kPosition){
+            glVertexAttribPointer(id, 3, GL_FLOAT, GL_FALSE, fSizePerVertex, reinterpret_cast<GLvoid*>(offset));
+            id += 1;
+            offset += sizeof(glm::vec3);
+        }
+        if(fComp & kTextureCoord){
+            glVertexAttribPointer(id, 2, GL_FLOAT, GL_FALSE, fSizePerVertex, reinterpret_cast<GLvoid*>(offset));
+            id += 1;
+            offset += sizeof(glm::vec2);
+        }
+        if(fComp & kNormal){
+            glVertexAttribPointer(id, 3, GL_FLOAT, GL_FALSE, fSizePerVertex, reinterpret_cast<GLvoid*>(offset));
+            id += 1;
+            offset += sizeof(glm::vec3);
+        }
+        if(fComp & kTangent){
+            glVertexAttribPointer(id, 3, GL_FLOAT, GL_FALSE, fSizePerVertex, reinterpret_cast<GLvoid*>(offset));
+            id += 1;
+            offset += sizeof(glm::vec3);
+        }
+        if(fComp & kBitangent){
+            glVertexAttribPointer(id, 3, GL_FLOAT, GL_FALSE, fSizePerVertex, reinterpret_cast<GLvoid*>(offset));
+            id += 1;
+            offset += sizeof(glm::vec3);
+        }
+    
+        for(GLuint i = 0;i<id;++i)
+            glEnableVertexAttribArray(i);
+    
+        glBindVertexArray(0);
+        OpenGLShouldHaveNoError(__FUNCTION__);
+        
+        RegisterNewVAO(fComp, fVertexArrayObject);
     }
     
-    for(GLuint i = 0;i<id;++i)
-        glEnableVertexAttribArray(i);
-    
-    glBindVertexArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     OpenGLShouldHaveNoError(__FUNCTION__);
