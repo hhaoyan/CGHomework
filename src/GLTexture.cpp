@@ -32,15 +32,16 @@ void GLTexture::FlipBuffer(){
     if(!fBuffer)
         Error(__FUNCTION__, "no buffer");
     
-    char* tmp = new char[TextureHeight() * 4];
+    int sizePerRow = fBufferSize / TextureHeight();
+    char* tmp = new char[sizePerRow];
+    
     char* parsed = reinterpret_cast<char*>(fBuffer);
     long height = TextureHeight();
-    long width = TextureWidth();
 
     for(int i = 0;i<height / 2;i++){
-        memcpy(tmp, &parsed[i * width * 4], width * 4);
-        memcpy(&parsed[i * width * 4], &parsed[(height - 1 - i) * width * 4], width * 4);
-        memcpy(&parsed[(height - i - 1) * width * 4], tmp, width * 4);
+        memcpy(tmp, &parsed[i * sizePerRow], sizePerRow);
+        memcpy(&parsed[i * sizePerRow], &parsed[(height - 1 - i) * sizePerRow], sizePerRow);
+        memcpy(&parsed[(height - i - 1) * sizePerRow], tmp, sizePerRow);
     }
         
     delete [] tmp;
