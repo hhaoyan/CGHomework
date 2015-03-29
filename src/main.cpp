@@ -5,11 +5,11 @@
 //  Copyright (c) 2015 Haoyan Huo. All rights reserved.
 //
 
-#include "../demos/FresnelShading.h"
+#include "../demos/FilmInterference.h"
 
 
 int main(int argc, char** argv){
-    GLApplication * app = new FresnelShading();
+    GLApplication * app = new FilmInterference();
     app->CreateWindow("Demo", 800, 600);
     app->RunMainLoop();
     delete app;

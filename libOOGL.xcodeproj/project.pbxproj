@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		292AC2B81AC789B0007354FB /* specrend.c in Sources */ = {isa = PBXBuildFile; fileRef = 292AC2B71AC789B0007354FB /* specrend.c */; };
 		293661BE1AC0FEF70084392E /* GLApplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 293661B61AC0FEF70084392E /* GLApplication.cpp */; };
 		293661BF1AC0FEF70084392E /* GLFramebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 293661B71AC0FEF70084392E /* GLFramebuffer.cpp */; };
 		293661C01AC0FEF70084392E /* GLMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 293661B81AC0FEF70084392E /* GLMesh.cpp */; };
@@ -40,6 +41,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		292AC2B71AC789B0007354FB /* specrend.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = specrend.c; path = src/specrend.c; sourceTree = SOURCE_ROOT; };
+		292AC2BA1AC7A1C8007354FB /* FilmInterference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilmInterference.h; path = demos/FilmInterference.h; sourceTree = SOURCE_ROOT; };
 		293661AC1AC0FA380084392E /* libOOGL */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = libOOGL; sourceTree = BUILT_PRODUCTS_DIR; };
 		293661B61AC0FEF70084392E /* GLApplication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GLApplication.cpp; path = src/GLApplication.cpp; sourceTree = SOURCE_ROOT; };
 		293661B71AC0FEF70084392E /* GLFramebuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GLFramebuffer.cpp; path = src/GLFramebuffer.cpp; sourceTree = SOURCE_ROOT; };
@@ -148,6 +151,7 @@
 				293661C61AC0FF040084392E /* src */,
 				293661DF1AC143AD0084392E /* demos */,
 				293661BC1AC0FEF70084392E /* main.cpp */,
+				292AC2B71AC789B0007354FB /* specrend.c */,
 			);
 			path = libOOGL;
 			sourceTree = "<group>";
@@ -214,6 +218,7 @@
 				295264901AC2FA5300DB79A9 /* VSCompute.h */,
 				298CA7531AC4507A00482ABB /* FresnelShading.h */,
 				293661E01AC143F70084392E /* DepthShadow.h */,
+				292AC2BA1AC7A1C8007354FB /* FilmInterference.h */,
 				296F429A1AC2A1E50098E71A /* FontDemo.h */,
 			);
 			name = demos;
@@ -314,6 +319,7 @@
 				294389DA1AC2BE1C00A2BDF8 /* GLTextRenderManager.cpp in Sources */,
 				293661BE1AC0FEF70084392E /* GLApplication.cpp in Sources */,
 				293661C41AC0FEF70084392E /* main.cpp in Sources */,
+				292AC2B81AC789B0007354FB /* specrend.c in Sources */,
 				293661C51AC0FEF70084392E /* TrackBallCamera.cpp in Sources */,
 				293661FF1AC191640084392E /* MacOSX.mm in Sources */,
 				293661C01AC0FEF70084392E /* GLMesh.cpp in Sources */,
