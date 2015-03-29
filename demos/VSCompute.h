@@ -15,7 +15,6 @@
 #include "GLShader.h"
 #include "glm/gtc/random.hpp"
 #include "AssetManager.h"
-#include <unistd.h>
 
 /**
  * @brief A class which simulates NumOfParticle * NumOfParticle particles

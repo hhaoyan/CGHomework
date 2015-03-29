@@ -14,8 +14,6 @@
 #include "GLTexture.h"
 #include "GLShader.h"
 #include "TrackBallCamera.h"
-#include "glm/gtc/random.hpp"
-#include <unistd.h>
 #include "GLSkybox.h"
 #include "AssetManager.h"
 

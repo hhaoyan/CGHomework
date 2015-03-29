@@ -11,7 +11,6 @@
 
 #include "GLApplication.h"
 #include "GLTextRenderManager.h"
-#include <unistd.h>
 #include "AssetManager.h"
 
 
@@ -30,7 +29,7 @@ public:
                                      1 - 48 * sy, sx, sy);
         
         GLTextRenderManager::AddText("line2",
-                                     L"本当の始まりよ、本当の終わりへ。",
+                                     L"きれいな。",
                                      48,
                                      -1 + 16 * sx, 1 - 100.5 * sy, sx, sy);
         
