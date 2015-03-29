@@ -43,11 +43,27 @@ namespace CIE {
     const double PI = 3.14159265;
     double theta = PI / 3;
     
+    double bodyTemp = 5778;
+    
     double film_interference(double wavelength)
     {
         double s = sin(2 * PI  * w * n * cos(theta) / wavelength);
         
-        return 4 * s * s;
+        // linear spectrum
+        // return s*s;
+        
+        // black body radiation
+        double wlm = wavelength * 1e-9;   /* Wavelength in meters */
+        double bb = (3.74183e-16 * pow(wlm, -5.0)) /
+            (exp(1.4388e-2 / (wlm * bodyTemp)) - 1.0) * s * s;
+        // return bb;
+        
+        // rayleigh scattering
+        double scattering = (wavelength / 1000);
+        scattering = scattering * scattering * scattering * scattering;
+        bb *= scattering;
+        
+        return bb;
     }
     
     void prepare_interference_texture_bgr888(void* buffer, int width, int height, int min_thickness, int max_thickness)
@@ -167,7 +183,7 @@ public:
             
             Info(__FUNCTION__, "preparing interference lookup texture...");
             
-            CIE::prepare_interference_texture_bgr888(buf, 1024, 1024, 300, 2000);
+            CIE::prepare_interference_texture_bgr888(buf, 1024, 1024, 300, 5000);
             //BITMAP::SaveBitmapFile(AssetManager::GetAsset("interference.bmp"), buf, 1024, 1024);
             
             Info(__FUNCTION__, "interference lookup texture done.");
