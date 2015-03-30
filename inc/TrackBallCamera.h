@@ -22,6 +22,11 @@ public:
     
     glm::mat4& GetProjectionViewMatrix();
     glm::vec3& GetEyePosition();
+    glm::mat4& GetViewMatrix() {
+        // trigger the matrix to be updated
+        GetProjectionViewMatrix();
+        return fViewMatrix;
+    }
     
     void ZoomIn() {fZoomFactor *= 0.5;}
     void ZoomOut() {fZoomFactor *= 1.5;}
