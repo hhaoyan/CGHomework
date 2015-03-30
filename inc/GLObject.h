@@ -93,7 +93,9 @@ protected:
      * objects in this virtual function, which will be called by framework at
      * a proper time.
      */
-    virtual void DeleteObject() {}
+    virtual void DeleteObject() {
+        Warning(__FUNCTION__, "default DeleteObject() method called, which means the class is not implementing the proper method for freeing OpenGL objects");
+    }
 };
 
 #endif /* defined(__libOOGL__GLObject__) */
