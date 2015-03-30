@@ -26,7 +26,7 @@ extern "C"{
         xBlue, yBlue,    	    /* Blue x, y */
         xWhite, yWhite,  	    /* White point x, y */
         gamma;   	    	    /* Gamma correction for system */
-    } EBUsystem =  { "EBU (PAL/SECAM)",    0.64,   0.33,   0.29,   0.60,   0.15,   0.06,   0.3127, 0.3291,  0 };
+    } EBUsystem =  { "CIE",                0.7355, 0.2645, 0.2658, 0.7243, 0.1669, 0.0085,0.33333333, 0.33333333,0};
     
     void spectrum_to_xyz(double (*spec_intens)(double wavelength),
                          double *x, double *y, double *z);
@@ -49,6 +49,11 @@ namespace CIE {
     {
         double s = sin(2 * PI  * w * n * cos(theta) / wavelength);
         
+        //if(wavelength - 2.5 < 632.8 && wavelength + 2.5 > 632.8)
+          //  return s* s;
+        //else
+          //  return 0;
+        
         // linear spectrum
         // return s*s;
         
@@ -56,7 +61,7 @@ namespace CIE {
         double wlm = wavelength * 1e-9;   /* Wavelength in meters */
         double bb = (3.74183e-16 * pow(wlm, -5.0)) /
             (exp(1.4388e-2 / (wlm * bodyTemp)) - 1.0) * s * s;
-        // return bb;
+        return bb;
         
         // rayleigh scattering
         double scattering = (wavelength / 1000);
@@ -163,8 +168,10 @@ namespace BITMAP {
 class FilmInterference : public GLApplication{
     TrackBallCamera* camera;
     GLTexture* fInterferenceTex;
-    GLMesh* fPlane;
-    GLShader* fTexShader;
+    GLCubemapTexture* skytex;
+    GLSkybox * sky;
+    GLShader* fshader;
+    GLMesh* sphere;
 public:
     virtual void MouseScroll(double x, double y){
         if(y > 0)
@@ -176,25 +183,35 @@ public:
         camera = new TrackBallCamera(this, 5.0f, 0.1f, 100.0f, 45.0);
         
         {
-            fInterferenceTex = new GLTexture();
+            /*fInterferenceTex = new GLTexture();
             fInterferenceTex->SetTextureSize(1024, 1024, GLTexture::kBGR888);
             void* buf;
             fInterferenceTex->GetTextureBuffer(&buf, NULL);
             
             Info(__FUNCTION__, "preparing interference lookup texture...");
             
-            CIE::prepare_interference_texture_bgr888(buf, 1024, 1024, 300, 5000);
-            //BITMAP::SaveBitmapFile(AssetManager::GetAsset("interference.bmp"), buf, 1024, 1024);
+            CIE::prepare_interference_texture_bgr888(buf, 1024, 1024, 300, 1300);
+            BITMAP::SaveBitmapFile(AssetManager::GetAsset("interference.bmp"), buf, 1024, 1024);
             
-            Info(__FUNCTION__, "interference lookup texture done.");
+            Info(__FUNCTION__, "interference lookup texture done.");*/
             
+            fInterferenceTex = GLTexture::LoadFromFile(AssetManager::GetAsset("interference.bmp"));
             fInterferenceTex->Attach();
             
-            fPlane = GLMesh::SimpleMeshGenerator::PlaneXY(GLMesh::kPosTexNor, 1.0f, 1.0f);
-            fPlane->Attach();
+        }
+        {
+            skytex = GLCubemapTexture::LoadFromFiles(AssetManager::GetAsset("/Park2/"),
+                                                     "posx.jpg", "negx.jpg", "posy.jpg", "negy.jpg", "posz.jpg", "negz.jpg");
+            skytex->Attach();
+            sky = new GLSkybox(skytex);
+            sky->Attach();
             
-            fTexShader = GLShader::SimpleShaderFactory::SimpleTexturedShader();
-            fTexShader->Attach();
+            sphere = GLMesh::SimpleMeshGenerator::Sphere(GLMesh::kPosTexNor, 1.0f, 50, 50);
+            //sphere = GLMesh::SimpleMeshGenerator::Cuboid(GLMesh::kPosTexNor, 1.0f, 1.0f, 1.0f);
+            sphere->Attach();
+            
+            fshader = new GLShader(AssetManager::GetAsset("fresnel_with_interference.shader"), "cameraPosition\nmRefractionRatio\nmFresnelBias\nmFresnelScale\nmFresnelPower\nmvpMatrix\nmodelMatrix\ntCube\ntInterference");
+            fshader->Attach();
         }
         
         {
@@ -210,15 +227,29 @@ public:
     virtual void RenderFrame(){
         camera->OnFrameUpdate();
         glm::mat4 mvp = camera->GetProjectionViewMatrix();
+        glm::vec3 cameraPosition = camera->GetEyePosition();
+        glm::mat4 ident = glm::translate(glm::vec3(0, 0, 0));
         
         glViewport(0, 0, GetWindowFramebufferWidth(), GetWindowFramebufferHeight());
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        sky->RenderSkybox(mvp, cameraPosition);
         
-        fTexShader->UseProgram();
-        fInterferenceTex->ActivateAndBindTexture(GL_TEXTURE0);
-        fTexShader->UniformMatrix4fv("transformMatrix", 1, GL_FALSE, &mvp[0][0]);
-        fTexShader->Uniform1i("tex", 0);
-        fPlane->UseMeshAndDrawTriangles();
+        fshader->UseProgram();
+        
+        fshader->Uniform1f("mRefractionRatio", 1.02);
+        fshader->Uniform1f("mFresnelBias", 0.1); // original 0.1
+        fshader->Uniform1f("mFresnelPower", 2.0);
+        fshader->Uniform1f("mFresnelScale", 1.0);
+        fshader->Uniform3fv("cameraPosition", 1, &cameraPosition[0]);
+        fshader->UniformMatrix4fv("mvpMatrix", 1, GL_FALSE, &mvp[0][0]);
+        fshader->UniformMatrix4fv("modelMatrix", 1, GL_FALSE, &ident[0][0]);
+        fshader->Uniform1i("tCube", 0);
+        fshader->Uniform1i("tInterference", 1);
+        
+        skytex->ActivateAndBindTexture(GL_TEXTURE0);
+        fInterferenceTex->ActivateAndBindTexture(GL_TEXTURE1);
+        
+        sphere->UseMeshAndDrawTriangles();
         
         float sx = 2.0 / GetWindowFramebufferWidth();
         float sy = 2.0 / GetWindowFramebufferHeight();
