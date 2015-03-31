@@ -69,6 +69,8 @@ public:
     virtual bool IsAttached() {return fIsAttached;}
     
 protected:
+    virtual void DeleteObject() {/*TODO: implement me!*/}
+    
     bool     fIsAttached;
     GLuint   fTexture;
     

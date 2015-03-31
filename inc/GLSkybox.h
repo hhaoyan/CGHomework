@@ -48,6 +48,9 @@ public:
     }
     virtual bool IsAttached(){ return fIsAttached; }
     virtual void Detach();
+    
+protected:
+    virtual void DeleteObject() {/*TODO: implement me!*/}
 private:
     bool fIsAttached;
     GLMesh* fSkyGeometry;
