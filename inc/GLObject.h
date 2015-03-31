@@ -36,7 +36,7 @@ class GLObject{
 public:
     /*! Default destructor */
     ~GLObject(){
-        DeleteObject();
+        this->DeleteObject();
     }
     
 protected:
@@ -94,7 +94,7 @@ protected:
      * a proper time.
      */
     virtual void DeleteObject() {
-        Warning(__FUNCTION__, "default DeleteObject() method called, which means the class is not implementing the proper method for freeing OpenGL objects");
+        //Warning(__FUNCTION__, "default DeleteObject() method called, which means the class is not implementing the proper method for freeing OpenGL objects");
     }
 };
 

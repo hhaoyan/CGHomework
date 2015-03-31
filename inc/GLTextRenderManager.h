@@ -89,6 +89,9 @@ public:
      * Call this in the render pass of your application.
      */
     static void RenderText();
+    
+protected:
+    virtual void DeleteObject() {}
 };
 
 #endif
