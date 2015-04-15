@@ -26,6 +26,8 @@
 		294389DA1AC2BE1C00A2BDF8 /* GLTextRenderManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 294389D91AC2BE1C00A2BDF8 /* GLTextRenderManager.cpp */; };
 		296F42991AC264E10098E71A /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 296F42981AC264E10098E71A /* libfreetype.a */; };
 		298CA7561AC4527E00482ABB /* GLSkybox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 298CA7551AC4527E00482ABB /* GLSkybox.cpp */; };
+		29B358841ACA42860059E71E /* libfftw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B358821ACA41650059E71E /* libfftw3.a */; };
+		29B358891ACA88D50059E71E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B358881ACA88D50059E71E /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -97,6 +99,8 @@
 		298CA7691AC5532600482ABB /* GLAttachable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLAttachable.h; path = inc/GLAttachable.h; sourceTree = SOURCE_ROOT; };
 		298CA76A1AC6C7B200482ABB /* AssetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AssetManager.h; path = inc/AssetManager.h; sourceTree = SOURCE_ROOT; };
 		29B358801AC930630059E71E /* fresnel_with_interference.shader */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fresnel_with_interference.shader; path = assets/fresnel_with_interference.shader; sourceTree = SOURCE_ROOT; };
+		29B358821ACA41650059E71E /* libfftw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfftw3.a; path = "fftw/fftw-3.3.4/osx_build/libfftw3.a"; sourceTree = "<group>"; };
+		29B358881ACA88D50059E71E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		29F265881AC1AA0900DD859A /* negx.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = negx.jpg; sourceTree = "<group>"; };
 		29F265891AC1AA0900DD859A /* negy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = negy.jpg; sourceTree = "<group>"; };
 		29F2658A1AC1AA0900DD859A /* negz.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = negz.jpg; sourceTree = "<group>"; };
@@ -110,6 +114,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29B358891ACA88D50059E71E /* AudioToolbox.framework in Frameworks */,
+				29B358841ACA42860059E71E /* libfftw3.a in Frameworks */,
 				296F42991AC264E10098E71A /* libfreetype.a in Frameworks */,
 				293661D91AC1044E0084392E /* libglfw3.a in Frameworks */,
 				293661D71AC104410084392E /* IOKit.framework in Frameworks */,
@@ -125,6 +131,8 @@
 		293661A31AC0FA380084392E = {
 			isa = PBXGroup;
 			children = (
+				29B358881ACA88D50059E71E /* AudioToolbox.framework */,
+				29B358821ACA41650059E71E /* libfftw3.a */,
 				296F42981AC264E10098E71A /* libfreetype.a */,
 				293661D81AC1044E0084392E /* libglfw3.a */,
 				293661D61AC104410084392E /* IOKit.framework */,
@@ -416,11 +424,13 @@
 					"\"$(SRCROOT)/glm\"/**",
 					"\"$(SRCROOT)/glfw/glfw-3.1.1/include\"/**",
 					"\"$(SRCROOT)/freetype/freetype-2.5.5/include\"/**",
+					"\"$(SRCROOT)/fftw/fftw-3.3.4/api\"",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/glfw/glfw-3.1.1/osx_build",
 					"$(PROJECT_DIR)/freetype/freetype-2.5.5/osx_build",
+					"$(PROJECT_DIR)/fftw/fftw-3.3.4/osx_build",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -438,11 +448,13 @@
 					"\"$(SRCROOT)/glm\"/**",
 					"\"$(SRCROOT)/glfw/glfw-3.1.1/include\"/**",
 					"\"$(SRCROOT)/freetype/freetype-2.5.5/include\"/**",
+					"\"$(SRCROOT)/fftw/fftw-3.3.4/api\"",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/glfw/glfw-3.1.1/osx_build",
 					"$(PROJECT_DIR)/freetype/freetype-2.5.5/osx_build",
+					"$(PROJECT_DIR)/fftw/fftw-3.3.4/osx_build",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "";
