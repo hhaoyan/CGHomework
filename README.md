@@ -1,4 +1,5 @@
 # libOOGL: Object Oriented OpenGL Library
+##Note: Out of maintenance since Apr. 2015
 
 ### Overview
 libOOGL is a cross platform wrapper for OpenGL, which lets developers focus on their graphics rather than the OpenGL API!
