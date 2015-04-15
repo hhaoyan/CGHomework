@@ -35,7 +35,12 @@ public:
     void RunMainLoop();
     
     /** @brief Gets the key state. */
-    bool IsKeyDown(unsigned char chr) {return fKeyState[chr] == 1;}
+    bool IsKeyDown(unsigned char chr) {
+        if(chr >= 'a' && chr <= 'z')
+            return fKeyState[chr - 'a' + 'A'];
+        else
+            return fKeyState[chr] == 1;
+    }
     /** @brief Gets the mouse key state. */
     bool IsMouseKeyDown(int which)
     {return (which <= 2 && which >= 0) ? (fMouseState[which] == 1) : false;}
