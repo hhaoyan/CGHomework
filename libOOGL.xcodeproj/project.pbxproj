@@ -14,6 +14,18 @@
 		2935F8CB1E213FA400559CD0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2935F8C91E213FA400559CD0 /* Main.storyboard */; };
 		2935F8D41E2140B300559CD0 /* RenderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2935F8D31E2140B300559CD0 /* RenderViewController.m */; };
 		2935F8D61E21414E00559CD0 /* OpenGLRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2935F8D51E21414E00559CD0 /* OpenGLRenderer.m */; };
+		2935F9331E21484B00559CD0 /* compute.shader in Resources */ = {isa = PBXBuildFile; fileRef = 2935F9271E21484B00559CD0 /* compute.shader */; };
+		2935F9341E21484B00559CD0 /* depth.shader in Resources */ = {isa = PBXBuildFile; fileRef = 2935F9281E21484B00559CD0 /* depth.shader */; };
+		2935F9351E21484B00559CD0 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 2935F9291E21484B00559CD0 /* fonts */; };
+		2935F9361E21484B00559CD0 /* fresnel_with_interference.shader in Resources */ = {isa = PBXBuildFile; fileRef = 2935F92A1E21484B00559CD0 /* fresnel_with_interference.shader */; };
+		2935F9371E21484B00559CD0 /* fresnel.shader in Resources */ = {isa = PBXBuildFile; fileRef = 2935F92B1E21484B00559CD0 /* fresnel.shader */; };
+		2935F9381E21484B00559CD0 /* Park2 in Resources */ = {isa = PBXBuildFile; fileRef = 2935F92C1E21484B00559CD0 /* Park2 */; };
+		2935F9391E21484B00559CD0 /* shadow.shader in Resources */ = {isa = PBXBuildFile; fileRef = 2935F92D1E21484B00559CD0 /* shadow.shader */; };
+		2935F93A1E21484B00559CD0 /* teapot.obj in Resources */ = {isa = PBXBuildFile; fileRef = 2935F92E1E21484B00559CD0 /* teapot.obj */; };
+		2935F93B1E21484B00559CD0 /* texture_mapping.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2935F92F1E21484B00559CD0 /* texture_mapping.jpg */; };
+		2935F93C1E21484B00559CD0 /* texture_visualize.shader in Resources */ = {isa = PBXBuildFile; fileRef = 2935F9301E21484B00559CD0 /* texture_visualize.shader */; };
+		2935F93D1E21484B00559CD0 /* wall.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 2935F9311E21484B00559CD0 /* wall.bmp */; };
+		2935F93E1E21484B00559CD0 /* Yokohama3 in Resources */ = {isa = PBXBuildFile; fileRef = 2935F9321E21484B00559CD0 /* Yokohama3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +43,52 @@
 		2935F8D51E21414E00559CD0 /* OpenGLRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLRenderer.m; sourceTree = "<group>"; };
 		2935F8D71E21415900559CD0 /* OpenGLRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenGLRenderer.h; sourceTree = "<group>"; };
 		2935F8D81E21419100559CD0 /* BaseGLImports.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseGLImports.h; sourceTree = "<group>"; };
+		2935F8F31E21480A00559CD0 /* AssetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AssetManager.h; path = inc/AssetManager.h; sourceTree = "<group>"; };
+		2935F8F41E21480A00559CD0 /* gl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gl.h; path = inc/gl.h; sourceTree = "<group>"; };
+		2935F8F51E21480A00559CD0 /* GLApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLApplication.h; path = inc/GLApplication.h; sourceTree = "<group>"; };
+		2935F8F61E21480A00559CD0 /* GLAttachable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLAttachable.h; path = inc/GLAttachable.h; sourceTree = "<group>"; };
+		2935F8F71E21480A00559CD0 /* GLCubemapTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLCubemapTexture.h; path = inc/GLCubemapTexture.h; sourceTree = "<group>"; };
+		2935F8F81E21480A00559CD0 /* GLFramebuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLFramebuffer.h; path = inc/GLFramebuffer.h; sourceTree = "<group>"; };
+		2935F8F91E21480A00559CD0 /* GLMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLMesh.h; path = inc/GLMesh.h; sourceTree = "<group>"; };
+		2935F8FA1E21480A00559CD0 /* GLObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLObject.h; path = inc/GLObject.h; sourceTree = "<group>"; };
+		2935F8FB1E21480A00559CD0 /* GLShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLShader.h; path = inc/GLShader.h; sourceTree = "<group>"; };
+		2935F8FC1E21480A00559CD0 /* GLSkybox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLSkybox.h; path = inc/GLSkybox.h; sourceTree = "<group>"; };
+		2935F8FD1E21480A00559CD0 /* GLTextRenderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLTextRenderManager.h; path = inc/GLTextRenderManager.h; sourceTree = "<group>"; };
+		2935F8FE1E21480A00559CD0 /* GLTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLTexture.h; path = inc/GLTexture.h; sourceTree = "<group>"; };
+		2935F8FF1E21480A00559CD0 /* ObjectiveCInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObjectiveCInterface.h; path = inc/ObjectiveCInterface.h; sourceTree = "<group>"; };
+		2935F9001E21480A00559CD0 /* TrackBallCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrackBallCamera.h; path = inc/TrackBallCamera.h; sourceTree = "<group>"; };
+		2935F9051E21483900559CD0 /* GLApplication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GLApplication.cpp; path = src/GLApplication.cpp; sourceTree = "<group>"; };
+		2935F9061E21483900559CD0 /* GLCubemapTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GLCubemapTexture.cpp; path = src/GLCubemapTexture.cpp; sourceTree = "<group>"; };
+		2935F9071E21483900559CD0 /* GLFramebuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GLFramebuffer.cpp; path = src/GLFramebuffer.cpp; sourceTree = "<group>"; };
+		2935F9081E21483900559CD0 /* GLMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GLMesh.cpp; path = src/GLMesh.cpp; sourceTree = "<group>"; };
+		2935F9091E21483900559CD0 /* GLObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GLObject.cpp; path = src/GLObject.cpp; sourceTree = "<group>"; };
+		2935F90A1E21483900559CD0 /* GLShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GLShader.cpp; path = src/GLShader.cpp; sourceTree = "<group>"; };
+		2935F90B1E21483900559CD0 /* GLSkybox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GLSkybox.cpp; path = src/GLSkybox.cpp; sourceTree = "<group>"; };
+		2935F90C1E21483900559CD0 /* GLTextRenderManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GLTextRenderManager.cpp; path = src/GLTextRenderManager.cpp; sourceTree = "<group>"; };
+		2935F90D1E21483900559CD0 /* GLTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GLTexture.cpp; path = src/GLTexture.cpp; sourceTree = "<group>"; };
+		2935F90E1E21483900559CD0 /* MacOSX.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MacOSX.mm; path = src/MacOSX.mm; sourceTree = "<group>"; };
+		2935F90F1E21483900559CD0 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = "<group>"; };
+		2935F9101E21483900559CD0 /* specrend.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = specrend.c; path = src/specrend.c; sourceTree = "<group>"; };
+		2935F9111E21483900559CD0 /* TrackBallCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TrackBallCamera.cpp; path = src/TrackBallCamera.cpp; sourceTree = "<group>"; };
+		2935F9121E21483900559CD0 /* Win32.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Win32.cpp; path = src/Win32.cpp; sourceTree = "<group>"; };
+		2935F9211E21484100559CD0 /* AudioSpectrum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioSpectrum.h; path = demos/AudioSpectrum.h; sourceTree = "<group>"; };
+		2935F9221E21484100559CD0 /* DepthShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DepthShadow.h; path = demos/DepthShadow.h; sourceTree = "<group>"; };
+		2935F9231E21484100559CD0 /* FilmInterference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilmInterference.h; path = demos/FilmInterference.h; sourceTree = "<group>"; };
+		2935F9241E21484100559CD0 /* FontDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FontDemo.h; path = demos/FontDemo.h; sourceTree = "<group>"; };
+		2935F9251E21484100559CD0 /* FresnelShading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FresnelShading.h; path = demos/FresnelShading.h; sourceTree = "<group>"; };
+		2935F9261E21484100559CD0 /* VSCompute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSCompute.h; path = demos/VSCompute.h; sourceTree = "<group>"; };
+		2935F9271E21484B00559CD0 /* compute.shader */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = compute.shader; path = assets/compute.shader; sourceTree = "<group>"; };
+		2935F9281E21484B00559CD0 /* depth.shader */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = depth.shader; path = assets/depth.shader; sourceTree = "<group>"; };
+		2935F9291E21484B00559CD0 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fonts; path = assets/fonts; sourceTree = "<group>"; };
+		2935F92A1E21484B00559CD0 /* fresnel_with_interference.shader */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fresnel_with_interference.shader; path = assets/fresnel_with_interference.shader; sourceTree = "<group>"; };
+		2935F92B1E21484B00559CD0 /* fresnel.shader */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = fresnel.shader; path = assets/fresnel.shader; sourceTree = "<group>"; };
+		2935F92C1E21484B00559CD0 /* Park2 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Park2; path = assets/Park2; sourceTree = "<group>"; };
+		2935F92D1E21484B00559CD0 /* shadow.shader */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = shadow.shader; path = assets/shadow.shader; sourceTree = "<group>"; };
+		2935F92E1E21484B00559CD0 /* teapot.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = teapot.obj; path = assets/teapot.obj; sourceTree = "<group>"; };
+		2935F92F1E21484B00559CD0 /* texture_mapping.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = texture_mapping.jpg; path = assets/texture_mapping.jpg; sourceTree = "<group>"; };
+		2935F9301E21484B00559CD0 /* texture_visualize.shader */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = texture_visualize.shader; path = assets/texture_visualize.shader; sourceTree = "<group>"; };
+		2935F9311E21484B00559CD0 /* wall.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; name = wall.bmp; path = assets/wall.bmp; sourceTree = "<group>"; };
+		2935F9321E21484B00559CD0 /* Yokohama3 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Yokohama3; path = assets/Yokohama3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +106,10 @@
 			isa = PBXGroup;
 			children = (
 				2935F8BD1E213FA400559CD0 /* libOOGL_macOS */,
+				2935F9021E21481F00559CD0 /* src */,
+				2935F9031E21482400559CD0 /* demos */,
+				2935F8E41E21479E00559CD0 /* inc */,
+				2935F9041E21482800559CD0 /* assets */,
 				2935F8BC1E213FA400559CD0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -86,6 +148,80 @@
 				2935F8C21E213FA400559CD0 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2935F8E41E21479E00559CD0 /* inc */ = {
+			isa = PBXGroup;
+			children = (
+				2935F8F31E21480A00559CD0 /* AssetManager.h */,
+				2935F8F41E21480A00559CD0 /* gl.h */,
+				2935F8F51E21480A00559CD0 /* GLApplication.h */,
+				2935F8F61E21480A00559CD0 /* GLAttachable.h */,
+				2935F8F71E21480A00559CD0 /* GLCubemapTexture.h */,
+				2935F8F81E21480A00559CD0 /* GLFramebuffer.h */,
+				2935F8F91E21480A00559CD0 /* GLMesh.h */,
+				2935F8FA1E21480A00559CD0 /* GLObject.h */,
+				2935F8FB1E21480A00559CD0 /* GLShader.h */,
+				2935F8FC1E21480A00559CD0 /* GLSkybox.h */,
+				2935F8FD1E21480A00559CD0 /* GLTextRenderManager.h */,
+				2935F8FE1E21480A00559CD0 /* GLTexture.h */,
+				2935F8FF1E21480A00559CD0 /* ObjectiveCInterface.h */,
+				2935F9001E21480A00559CD0 /* TrackBallCamera.h */,
+			);
+			name = inc;
+			sourceTree = "<group>";
+		};
+		2935F9021E21481F00559CD0 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				2935F9051E21483900559CD0 /* GLApplication.cpp */,
+				2935F9061E21483900559CD0 /* GLCubemapTexture.cpp */,
+				2935F9071E21483900559CD0 /* GLFramebuffer.cpp */,
+				2935F9081E21483900559CD0 /* GLMesh.cpp */,
+				2935F9091E21483900559CD0 /* GLObject.cpp */,
+				2935F90A1E21483900559CD0 /* GLShader.cpp */,
+				2935F90B1E21483900559CD0 /* GLSkybox.cpp */,
+				2935F90C1E21483900559CD0 /* GLTextRenderManager.cpp */,
+				2935F90D1E21483900559CD0 /* GLTexture.cpp */,
+				2935F90E1E21483900559CD0 /* MacOSX.mm */,
+				2935F90F1E21483900559CD0 /* main.cpp */,
+				2935F9101E21483900559CD0 /* specrend.c */,
+				2935F9111E21483900559CD0 /* TrackBallCamera.cpp */,
+				2935F9121E21483900559CD0 /* Win32.cpp */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		2935F9031E21482400559CD0 /* demos */ = {
+			isa = PBXGroup;
+			children = (
+				2935F9211E21484100559CD0 /* AudioSpectrum.h */,
+				2935F9221E21484100559CD0 /* DepthShadow.h */,
+				2935F9231E21484100559CD0 /* FilmInterference.h */,
+				2935F9241E21484100559CD0 /* FontDemo.h */,
+				2935F9251E21484100559CD0 /* FresnelShading.h */,
+				2935F9261E21484100559CD0 /* VSCompute.h */,
+			);
+			name = demos;
+			sourceTree = "<group>";
+		};
+		2935F9041E21482800559CD0 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				2935F9271E21484B00559CD0 /* compute.shader */,
+				2935F9281E21484B00559CD0 /* depth.shader */,
+				2935F9291E21484B00559CD0 /* fonts */,
+				2935F92A1E21484B00559CD0 /* fresnel_with_interference.shader */,
+				2935F92B1E21484B00559CD0 /* fresnel.shader */,
+				2935F92C1E21484B00559CD0 /* Park2 */,
+				2935F92D1E21484B00559CD0 /* shadow.shader */,
+				2935F92E1E21484B00559CD0 /* teapot.obj */,
+				2935F92F1E21484B00559CD0 /* texture_mapping.jpg */,
+				2935F9301E21484B00559CD0 /* texture_visualize.shader */,
+				2935F9311E21484B00559CD0 /* wall.bmp */,
+				2935F9321E21484B00559CD0 /* Yokohama3 */,
+			);
+			name = assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,7 +282,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2935F9391E21484B00559CD0 /* shadow.shader in Resources */,
+				2935F93C1E21484B00559CD0 /* texture_visualize.shader in Resources */,
+				2935F9331E21484B00559CD0 /* compute.shader in Resources */,
+				2935F9371E21484B00559CD0 /* fresnel.shader in Resources */,
+				2935F9351E21484B00559CD0 /* fonts in Resources */,
+				2935F93A1E21484B00559CD0 /* teapot.obj in Resources */,
+				2935F9361E21484B00559CD0 /* fresnel_with_interference.shader in Resources */,
+				2935F93E1E21484B00559CD0 /* Yokohama3 in Resources */,
+				2935F93B1E21484B00559CD0 /* texture_mapping.jpg in Resources */,
 				2935F8C81E213FA400559CD0 /* Assets.xcassets in Resources */,
+				2935F93D1E21484B00559CD0 /* wall.bmp in Resources */,
+				2935F9381E21484B00559CD0 /* Park2 in Resources */,
+				2935F9341E21484B00559CD0 /* depth.shader in Resources */,
 				2935F8CB1E213FA400559CD0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
